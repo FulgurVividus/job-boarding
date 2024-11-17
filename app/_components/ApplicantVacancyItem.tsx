@@ -13,7 +13,9 @@ interface AllVacanciesProps {
   }[];
 }
 
-const VacancyItem: React.FC<AllVacanciesProps> = ({ allVacancies }) => {
+const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
+  allVacancies,
+}) => {
   return (
     <>
       <div>
@@ -29,4 +31,4 @@ const VacancyItem: React.FC<AllVacanciesProps> = ({ allVacancies }) => {
   );
 };
 
-export default VacancyItem;
+export default ApplicantVacancyItem;

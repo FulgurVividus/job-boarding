@@ -1,5 +1,5 @@
 import SignOutButton from "@/app/_components/SignOutButton";
-import VacanciesList from "@/app/_components/VacanciesList";
+import ApplicantVacanciesList from "@/app/_components/ApplicantVacanciesList";
 import React from "react";
 
 const Page: React.FC = () => {
@@ -10,7 +10,7 @@ const Page: React.FC = () => {
         <h1 className="mt-10">Applicant Vacancies Page</h1>
 
         <div className="mt-10 flex items-center">
-          <VacanciesList />
+          <ApplicantVacanciesList />
         </div>
       </main>
     </>
