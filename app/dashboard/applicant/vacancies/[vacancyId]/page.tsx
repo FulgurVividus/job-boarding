@@ -2,8 +2,14 @@ import { getVacancy } from "@/app/_lib/services";
 import Link from "next/link";
 import React from "react";
 
-const Page: React.FC = async ({ params }) => {
-  const vacancy = await getVacancy(params.vacancyId);
+interface PageProps {
+  params: {
+    vacancyId: string;
+  };
+}
+
+const Page: React.FC<PageProps> = async ({ params }) => {
+  const vacancy = await getVacancy(+params.vacancyId);
 
   return (
     <main>
