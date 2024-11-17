@@ -29,3 +29,32 @@ export async function getVacancy(id: number) {
 
   return vacancy;
 }
+
+// get all company's vacancies
+export async function getCompanyAllVacancies(companyId: number) {
+  const { data: vacancies, error } = await supabase
+    .from("vacancies")
+    .select("*")
+    .eq("company_id", companyId);
+
+  if (error) {
+    console.log(error);
+  }
+
+  return vacancies;
+}
+
+// get specific company's vacancy
+export async function getCompanySpecificVacancy(id: number) {
+  const { data: companyVacancy, error } = await supabase
+    .from("vacancies")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.log(error);
+  }
+
+  return companyVacancy;
+}
