@@ -8,7 +8,8 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {
-  const companyVacancy = await getCompanySpecificVacancy(+params.vacancyId);
+  const { vacancyId } = await params;
+  const companyVacancy = await getCompanySpecificVacancy(+vacancyId);
 
   return (
     <main>
