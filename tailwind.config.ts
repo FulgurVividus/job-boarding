@@ -11,8 +11,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        mainBlack: "#000000",
+        mainWhite: "#FFFFFF",
+        mainBlue: "#87CEEB",
+        mainSalmon: "#FA8072",
       },
     },
   },
