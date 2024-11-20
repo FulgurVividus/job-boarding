@@ -14,7 +14,7 @@ function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="max-w-full md:max-w-7xl">
         <Provider>{children}</Provider>
       </body>
     </html>
