@@ -5,11 +5,14 @@ import React from "react";
 const Page: React.FC = () => {
   return (
     <>
-      <main className="px-20 py-10 max-w-full">
+      <main className="px-10 py-5 md:px-20 md:py-10 max-w-full md:max-w-7xl">
         <SignOutButton />
-        <h1 className="mt-10">Applicant Vacancies Page</h1>
+        <h1 className="mt-5 md:mt-10 text-lg md:text-2xl font-bold">
+          <span className="text-mainSalmon">Applicant&apos;s</span> Vacancies
+          Page
+        </h1>
 
-        <div className="mt-10 flex items-center">
+        <div className="mt-10">
           <ApplicantVacanciesList />
         </div>
       </main>
