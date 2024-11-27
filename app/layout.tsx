@@ -14,7 +14,7 @@ function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-[#FFFAF0] h-screen">
         <Provider>{children}</Provider>
       </body>
     </html>

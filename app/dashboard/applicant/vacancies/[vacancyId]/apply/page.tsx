@@ -27,7 +27,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
                 id="name"
                 required
                 placeholder="E.g: John Doe"
-                className="outline-none"
+                className="outline-none bg-transparent"
               />
             </div>
 
@@ -41,7 +41,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
                 id="age"
                 required
                 placeholder="E.g: 20"
-                className="outline-none"
+                className="outline-none bg-transparent"
               />
             </div>
 
@@ -55,7 +55,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
                 id="experience"
                 required
                 placeholder="E.g: 5"
-                className="outline-none"
+                className="outline-none bg-transparent"
               />
             </div>
 
@@ -69,7 +69,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
                 id="email"
                 required
                 placeholder="E.g: john@gmail.com"
-                className="outline-none"
+                className="outline-none bg-transparent"
               />
             </div>
           </section>
