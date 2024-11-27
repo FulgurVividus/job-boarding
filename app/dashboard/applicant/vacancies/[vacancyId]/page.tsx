@@ -80,6 +80,7 @@ const Page: React.FC<PageProps> = async ({ params }) => {
 
         <LinkButton
           href={`/dashboard/applicant/vacancies/${id}/apply`}
+          className="py-5"
           title="Apply for this vacancy link"
         >
           Go for
