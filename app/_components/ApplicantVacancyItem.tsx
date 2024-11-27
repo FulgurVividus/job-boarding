@@ -39,6 +39,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
                     <Image
                       alt="Card image"
                       className="object-cover rounded-xl select-none"
+                      priority={true}
                       src={defaultImg}
                       width={270}
                     />
