@@ -58,3 +58,18 @@ export async function getCompanySpecificVacancy(id: number) {
 
   return companyVacancy;
 }
+
+// get specific company info
+export async function getCompanyInfo(id: number) {
+  const { data: companyInfo, error } = await supabase
+    .from("companies")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.log(error);
+  }
+
+  return companyInfo;
+}
