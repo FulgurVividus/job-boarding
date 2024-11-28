@@ -50,28 +50,28 @@ const Page: React.FC<PageProps> = async ({ params }) => {
           </h1>
           <div className="flex flex-col gap-3 md:gap-5">
             <p className="text-lg flex items-center gap-2">
-              <CalendarDaysIcon className="h-5 w-5" />
+              <CalendarDaysIcon className="h-5 w-5 flex-shrink-0" />
               <span className="font-serif font-medium">Published:</span>{" "}
               {whenPublishedText}
             </p>
             <p className="text-lg flex items-center gap-2">
-              <AcademicCapIcon className="h-5 w-5" />
+              <AcademicCapIcon className="h-5 w-5 flex-shrink-0" />
               <span className="font-serif font-medium">
                 Experience required:
               </span>{" "}
               {experienceRequired} years
             </p>
             <p className="text-lg flex items-center gap-2">
-              <MapPinIcon className="h-5 w-5" />
+              <MapPinIcon className="h-5 w-5 flex-shrink-0" />
               <span className="font-serif font-medium">Location:</span>{" "}
               {vacancyLocation}
             </p>
             <p className="text-lg flex items-center gap-2">
-              <CurrencyDollarIcon className="h-5 w-5" />
+              <CurrencyDollarIcon className="h-5 w-5 flex-shrink-0" />
               <span className="font-serif font-medium">Salary:</span> {salary}
             </p>
             <p className="text-lg flex items-center gap-2">
-              <AtSymbolIcon className="h-5 w-5" />
+              <AtSymbolIcon className="h-5 w-5 flex-shrink-0" />
               <span className="font-serif font-medium">Contact:</span>{" "}
               {emailContact}
             </p>
