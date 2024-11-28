@@ -8,8 +8,6 @@ const CompanyVacanciesList: React.FC = async () => {
 
   return (
     <section>
-      <h1>Company Vacancies List</h1>
-
       <CompanyVacancyItem companyAllVacancies={companyAllVacancies || []} />
     </section>
   );
