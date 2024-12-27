@@ -1,6 +1,8 @@
-import { getCompanySpecificVacancy } from "@/app/_lib/services";
-import React from "react";
 import UpdateCompanyVacancy from "@/app/_components/UpdateCompanyVacancy";
+import { auth } from "@/app/_lib/auth";
+import { getCompanySpecificVacancy } from "@/app/_lib/services";
+import { redirect } from "next/navigation";
+import React from "react";
 
 interface PageProps {
   params: {
@@ -21,6 +23,17 @@ const Page: React.FC<PageProps> = async ({ params }) => {
     salary,
     emailContact,
   } = companyVacancy;
+
+  const session = await auth();
+  const role: string | undefined = session?.user?.role;
+
+  if (!role) {
+    redirect("/role");
+  }
+
+  if (role !== "company") {
+    redirect("/no-access");
+  }
 
   return (
     <main className="px-10 py-5 md:px-20 md:py-10 flex flex-col justify-between items-center max-h-full">

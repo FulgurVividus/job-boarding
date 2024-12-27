@@ -6,6 +6,7 @@ import { getCompanyInfo } from "@/app/_lib/services";
 import { StaticImageData } from "next/image";
 import React from "react";
 import noUser from "@/public/no-user.png";
+import { redirect } from "next/navigation";
 
 type IUserImage = string | StaticImageData;
 
@@ -15,8 +16,20 @@ const Page: React.FC = async () => {
   const { companyName } = await companyInfo;
 
   const session = await auth();
+
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
   const userName: string = session?.user?.name?.split(" ").at(0) || "User";
+  const role: string | undefined = session?.user?.role;
+
+  if (!role) {
+    redirect("/role");
+  }
+
+  if (role !== "company") {
+    redirect("/no-access");
+  }
+
+  // console.log(session);
 
   return (
     <>

@@ -9,6 +9,8 @@ import {
   AtSymbolIcon,
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
+import { auth } from "@/app/_lib/auth";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   params: {
@@ -28,6 +30,17 @@ const Page: React.FC<PageProps> = async ({ params }) => {
     salary,
     emailContact,
   } = await getVacancy(+vacancyId);
+
+  const session = await auth();
+  const role: string | undefined = session?.user?.role;
+
+  if (!role) {
+    redirect("/role");
+  }
+
+  if (role !== "applicant") {
+    redirect("/no-access");
+  }
 
   const whenPublished = differenceInDays(new Date(), new Date(created_at));
 

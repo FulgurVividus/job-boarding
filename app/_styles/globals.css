@@ -37,3 +37,9 @@ h6 {
 body {
   -webkit-font-smoothing: antialiased;
 }
+
+@layer components {
+  .common-button {
+    @apply px-10 py-2 mt-2 bg-mainBlue bg-gradient-to-r from-mainSalmon to-mainBlue transition-all duration-300 hover:scale-95 font-semibold text-mainWhite hover:text-mainBlack rounded-3xl text-center;
+  }
+}

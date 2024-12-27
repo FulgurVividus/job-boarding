@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
 import Provider from "./Provider";
+import { RoleProvider } from "./_context/RoleContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +16,9 @@ function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#FFFAF0] h-screen">
-        <Provider>{children}</Provider>
+        <RoleProvider>
+          <Provider>{children}</Provider>
+        </RoleProvider>
       </body>
     </html>
   );

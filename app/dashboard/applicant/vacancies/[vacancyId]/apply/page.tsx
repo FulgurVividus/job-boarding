@@ -1,9 +1,22 @@
+import { auth } from "@/app/_lib/auth";
 import { getVacancy } from "@/app/_lib/services";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
   const { title } = await getVacancy(+vacancyId);
+
+  const session = await auth();
+  const role: string | undefined = session?.user?.role;
+
+  if (!role) {
+    redirect("/role");
+  }
+
+  if (role !== "applicant") {
+    redirect("/no-access");
+  }
 
   return (
     <>
