@@ -5,9 +5,6 @@ import { createUser, getUser } from "./services";
 const authConfig = {
   providers: [
     Google({
-      // profile(profile) {
-      //   return { role: profile.role ?? "applicant" };
-      // },
       clientId: process.env.AUTH_GOOGLE_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
     }),
