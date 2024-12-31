@@ -1,6 +1,7 @@
 import ApplicantVacanciesList from "@/app/_components/ApplicantVacanciesList";
 import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
+import { getApplicantUser, getUser } from "@/app/_lib/services";
 import noUser from "@/public/no-user.png";
 import { StaticImageData } from "next/image";
 import { redirect } from "next/navigation";
@@ -12,8 +13,12 @@ const Page: React.FC<IUserImage> = async () => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
-  const userName: string = session?.user?.name?.split(" ").at(0) || "User";
-  const role: string | undefined = session?.user?.role;
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  const applicantUser = await getApplicantUser(user?.email);
+  const userName: string = applicantUser?.fullName?.split(" ").at(0) || "User";
 
   if (!role) {
     redirect("/role");
@@ -23,7 +28,9 @@ const Page: React.FC<IUserImage> = async () => {
     redirect("/no-access");
   }
 
-  // console.log(session);
+  if (!applicantUser) {
+    redirect("/create-form");
+  }
 
   return (
     <>

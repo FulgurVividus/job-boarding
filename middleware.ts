@@ -7,5 +7,6 @@ export const config = {
     "/dashboard/company/:path*",
     "/dashboard/applicant/:path*",
     "/role",
+    "/create-form",
   ],
 };

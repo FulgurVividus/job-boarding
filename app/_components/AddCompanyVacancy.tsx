@@ -7,7 +7,21 @@ import {
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
 
-const AddCompanyVacancy: React.FC = () => {
+interface AddCompanyVacancyProps {
+  companyUser:
+    | {
+        id: number;
+        companyName: string;
+        location: string;
+        contactEmail: string;
+        contactNumber: string;
+      }
+    | undefined;
+}
+
+const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
+  companyUser,
+}) => {
   return (
     <form action="" className="mt-10 flex flex-col justify-between">
       {/* inputs div */}
@@ -21,24 +35,8 @@ const AddCompanyVacancy: React.FC = () => {
             type="text"
             id="title"
             name="title"
+            required
             placeholder="E.g: Software Engineer"
-            className="bg-transparent text-lg outline-none"
-          />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <MapPinIcon className="h-5 w-5 flex-shrink-0" />
-          <label
-            htmlFor="vacancyLocation"
-            className="font-serif text-lg font-semibold"
-          >
-            Location:
-          </label>
-          <input
-            type="text"
-            id="vacancyLocation"
-            name="vacancyLocation"
-            placeholder="E.g: London"
             className="bg-transparent text-lg outline-none"
           />
         </div>
@@ -55,6 +53,7 @@ const AddCompanyVacancy: React.FC = () => {
             type="number"
             id="experienceRequired"
             name="experienceRequired"
+            required
             placeholder="E.g: 2"
             className="bg-transparent text-lg outline-none"
           />
@@ -69,7 +68,27 @@ const AddCompanyVacancy: React.FC = () => {
             type="text"
             id="salary"
             name="salary"
+            required
             placeholder="E.g: 100.000$"
+            className="bg-transparent text-lg outline-none"
+          />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <MapPinIcon className="h-5 w-5 flex-shrink-0" />
+          <label
+            htmlFor="vacancyLocation"
+            className="font-serif text-lg font-semibold"
+          >
+            Location:
+          </label>
+          <input
+            type="text"
+            id="vacancyLocation"
+            name="vacancyLocation"
+            required
+            defaultValue={companyUser?.location}
+            placeholder="E.g: London"
             className="bg-transparent text-lg outline-none"
           />
         </div>
@@ -86,6 +105,8 @@ const AddCompanyVacancy: React.FC = () => {
             type="text"
             id="emailContact"
             name="emailContact"
+            required
+            defaultValue={companyUser?.contactEmail}
             placeholder="E.g: company@gmail.com"
             className="bg-transparent text-lg outline-none"
           />

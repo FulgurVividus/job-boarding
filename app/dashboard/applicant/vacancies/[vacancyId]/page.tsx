@@ -1,5 +1,5 @@
 import LinkButton from "@/app/_components/LinkButton";
-import { getVacancy } from "@/app/_lib/services";
+import { getApplicantUser, getUser, getVacancy } from "@/app/_lib/services";
 import { differenceInDays } from "date-fns";
 import React from "react";
 import {
@@ -32,7 +32,11 @@ const Page: React.FC<PageProps> = async ({ params }) => {
   } = await getVacancy(+vacancyId);
 
   const session = await auth();
-  const role: string | undefined = session?.user?.role;
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  const applicantUser = await getApplicantUser(user?.email);
 
   if (!role) {
     redirect("/role");
@@ -40,6 +44,10 @@ const Page: React.FC<PageProps> = async ({ params }) => {
 
   if (role !== "applicant") {
     redirect("/no-access");
+  }
+
+  if (!applicantUser) {
+    redirect("/create-form");
   }
 
   const whenPublished = differenceInDays(new Date(), new Date(created_at));

@@ -2,7 +2,7 @@ import CompanyVacanciesList from "@/app/_components/CompanyVacanciesList";
 import LinkButton from "@/app/_components/LinkButton";
 import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
-import { getCompanyInfo } from "@/app/_lib/services";
+import { getCompanyUser, getUser } from "@/app/_lib/services";
 import { StaticImageData } from "next/image";
 import React from "react";
 import noUser from "@/public/no-user.png";
@@ -12,14 +12,16 @@ type IUserImage = string | StaticImageData;
 
 const Page: React.FC = async () => {
   // TODO: get company id dynamically
-  const companyInfo = await getCompanyInfo(1);
-  const { companyName } = await companyInfo;
 
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
-  const userName: string = session?.user?.name?.split(" ").at(0) || "User";
-  const role: string | undefined = session?.user?.role;
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  const companyUser = await getCompanyUser(user?.email);
+  const userName: string = companyUser?.companyName?.split(" ").at(0) || "User";
 
   if (!role) {
     redirect("/role");
@@ -29,7 +31,9 @@ const Page: React.FC = async () => {
     redirect("/no-access");
   }
 
-  // console.log(session);
+  if (!companyUser) {
+    redirect("/create-form");
+  }
 
   return (
     <>
@@ -60,8 +64,8 @@ const Page: React.FC = async () => {
         </div>
 
         <h1 className="mt-5 md:mt-10 text-lg md:text-2xl font-bold">
-          <span className="text-mainSalmon">{companyName}&apos;s</span>{" "}
-          Vacancies Page
+          <span className="text-mainSalmon">{userName}&apos;s</span> Vacancies
+          Page
         </h1>
 
         <div className="mt-10">

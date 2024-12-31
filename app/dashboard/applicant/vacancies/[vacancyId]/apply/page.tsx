@@ -1,5 +1,5 @@
 import { auth } from "@/app/_lib/auth";
-import { getVacancy } from "@/app/_lib/services";
+import { getApplicantUser, getUser, getVacancy } from "@/app/_lib/services";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -8,7 +8,11 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { title } = await getVacancy(+vacancyId);
 
   const session = await auth();
-  const role: string | undefined = session?.user?.role;
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  const applicantUser = await getApplicantUser(user?.email);
 
   if (!role) {
     redirect("/role");
@@ -16,6 +20,10 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
 
   if (role !== "applicant") {
     redirect("/no-access");
+  }
+
+  if (!applicantUser) {
+    redirect("/create-form");
   }
 
   return (
@@ -38,6 +46,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
                 type="text"
                 name="name"
                 id="name"
+                defaultValue={applicantUser?.fullName}
                 required
                 placeholder="E.g: John Doe"
                 className="outline-none bg-transparent"
@@ -45,15 +54,16 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
             </div>
 
             <div className="text-lg flex items-center gap-2">
-              <label htmlFor="age" className="font-serif font-medium">
-                Age:
+              <label htmlFor="email" className="font-serif font-medium">
+                Email:
               </label>
               <input
-                type="number"
-                name="age"
-                id="age"
+                type="text"
+                name="email"
+                id="email"
+                defaultValue={applicantUser?.email}
                 required
-                placeholder="E.g: 20"
+                placeholder="E.g: john@gmail.com"
                 className="outline-none bg-transparent"
               />
             </div>
@@ -73,15 +83,16 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
             </div>
 
             <div className="text-lg flex items-center gap-2">
-              <label htmlFor="email" className="font-serif font-medium">
-                Email:
+              <label htmlFor="birthYear" className="font-serif font-medium">
+                Birth year:
               </label>
               <input
-                type="text"
-                name="email"
-                id="email"
+                type="number"
+                name="birthYear"
+                id="birthYear"
+                defaultValue={applicantUser?.birthYear}
                 required
-                placeholder="E.g: john@gmail.com"
+                placeholder="E.g: 20"
                 className="outline-none bg-transparent"
               />
             </div>

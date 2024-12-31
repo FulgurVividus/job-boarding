@@ -38,11 +38,11 @@ export async function getVacancy(id: number) {
 }
 
 // get all company's vacancies
-export async function getCompanyAllVacancies(companyId: number) {
+export async function getCompanyAllVacancies(id: number) {
   const { data: vacancies, error } = await supabaseClient
     .from("vacancies")
     .select("*")
-    .eq("company_id", companyId);
+    .eq("id", id);
 
   if (error) {
     console.log(`Error in getting all company's vacancies: ${error}`);
@@ -118,4 +118,34 @@ export async function storeRole(role: string, userId: number) {
   }
 
   return data;
+}
+
+// get company user
+export async function getCompanyUser(email: string) {
+  const { data: companyUser, error } = await supabaseClient
+    .from("companies")
+    .select("*")
+    .eq("contactEmail", email)
+    .single();
+
+  if (error) {
+    console.log(`Error in getting company user: ${error}`);
+  }
+
+  return companyUser;
+}
+
+// get applicant user
+export async function getApplicantUser(email: string) {
+  const { data: applicantUser, error } = await supabaseClient
+    .from("applicants")
+    .select("*")
+    .eq("email", email)
+    .single();
+
+  if (error) {
+    console.log(`Error in getting applicant user: ${error}`);
+  }
+
+  return applicantUser;
 }

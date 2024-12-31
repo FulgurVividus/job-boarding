@@ -1,6 +1,10 @@
 import UpdateCompanyVacancy from "@/app/_components/UpdateCompanyVacancy";
 import { auth } from "@/app/_lib/auth";
-import { getCompanySpecificVacancy } from "@/app/_lib/services";
+import {
+  getCompanySpecificVacancy,
+  getCompanyUser,
+  getUser,
+} from "@/app/_lib/services";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -25,7 +29,11 @@ const Page: React.FC<PageProps> = async ({ params }) => {
   } = companyVacancy;
 
   const session = await auth();
-  const role: string | undefined = session?.user?.role;
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  const companyUser = await getCompanyUser(user?.email);
 
   if (!role) {
     redirect("/role");
@@ -33,6 +41,10 @@ const Page: React.FC<PageProps> = async ({ params }) => {
 
   if (role !== "company") {
     redirect("/no-access");
+  }
+
+  if (!companyUser) {
+    redirect("/create-form");
   }
 
   return (

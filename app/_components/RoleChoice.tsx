@@ -53,13 +53,7 @@ const RoleChoice: React.FC<Props> = ({ user }) => {
             </Radio>
           </RadioGroup>
           {chosen && (
-            <Link
-              href={`${
-                selected === "company"
-                  ? "/dashboard/company/vacancies"
-                  : "/dashboard/applicant/vacancies"
-              }`}
-            >
+            <Link href={"/create-form"}>
               <button
                 className="px-10 py-2 bg-mainBlue bg-gradient-to-r from-mainSalmon to-mainBlue transition-all duration-300 hover:scale-95 font-semibold text-mainWhite hover:text-mainBlack rounded-3xl text-center mt-5"
                 title="Submit the role"
