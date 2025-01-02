@@ -64,7 +64,7 @@ const Page: React.FC = async () => {
         </div>
 
         <h1
-          className="mt-5 md:mt-10 text-xl md:text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 bg-gradient-to-r from-mainSalmon via-mainBlue to-mainGreen bg-clip-text text-transparent drop-shadow-md"
+          className="mt-5 md:mt-10 text-xl md:text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 bg-clip-text drop-shadow-md"
           style={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "0.05em",

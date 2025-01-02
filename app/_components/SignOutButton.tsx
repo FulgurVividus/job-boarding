@@ -7,10 +7,11 @@ const SignOutButton: React.FC = () => {
     <button
       className="flex items-center justify-center"
       onClick={signOutAction}
+      title="Sign out"
     >
       <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
       <span
-        className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-text text-transparent"
+        className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-text"
         style={{
           fontFamily: "'Poppins', sans-serif",
           letterSpacing: "0.02em",
