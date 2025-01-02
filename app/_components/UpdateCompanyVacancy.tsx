@@ -25,26 +25,31 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
   return (
     <form action="" className="mt-10 flex flex-col justify-between">
       {/* inputs div */}
-      <div className="flex flex-col gap-5 w-full max-w-lg">
-        <div className="flex items-center gap-2">
-          <BriefcaseIcon className="h-5 w-5 flex-shrink-0" />
-          <label htmlFor="title" className="font-serif text-lg font-semibold">
-            Tittle:
+      <div className="flex flex-col gap-6 w-full max-w-lg">
+        {/* Title */}
+        <div className="flex items-center gap-3">
+          <BriefcaseIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
+          <label
+            htmlFor="title"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+          >
+            Title:
           </label>
           <input
             type="text"
             id="title"
             name="title"
             defaultValue={title}
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <MapPinIcon className="h-5 w-5 flex-shrink-0" />
+        {/* Location */}
+        <div className="flex items-center gap-3">
+          <MapPinIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="vacancyLocation"
-            className="font-serif text-lg font-semibold"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
           >
             Location:
           </label>
@@ -53,30 +58,35 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="vacancyLocation"
             name="vacancyLocation"
             defaultValue={vacancyLocation}
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-3 md:gap-2">
-          <AcademicCapIcon className="h-5 w-5 flex-shrink-0" />
+        {/* Experience */}
+        <div className="flex items-center gap-3">
+          <AcademicCapIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="experienceRequired"
-            className="font-serif text-lg font-semibold"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
           >
-            Years of experience:
+            Experience:
           </label>
           <input
             type="number"
             id="experienceRequired"
             name="experienceRequired"
             defaultValue={experienceRequired}
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <CurrencyDollarIcon className="h-5 w-5 flex-shrink-0" />
-          <label htmlFor="salary" className="font-serif text-lg font-semibold">
+        {/* Salary */}
+        <div className="flex items-center gap-3">
+          <CurrencyDollarIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
+          <label
+            htmlFor="salary"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+          >
             Salary:
           </label>
           <input
@@ -84,15 +94,16 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="salary"
             name="salary"
             defaultValue={salary}
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <AtSymbolIcon className="h-5 w-5 flex-shrink-0" />
+        {/* Email */}
+        <div className="flex items-center gap-3">
+          <AtSymbolIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="emailContact"
-            className="font-serif text-lg font-semibold"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
           >
             Email:
           </label>
@@ -101,18 +112,24 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="emailContact"
             name="emailContact"
             defaultValue={emailContact}
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
       </div>
 
       {/* TODO: make button actionable */}
-      <div className="flex items-center justify-between mt-10">
-        <button className="uppercase bg-green-600 text-white font-semibold p-2 rounded-xl hover:opacity-85 duration-100">
-          update
+      <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
+        <button
+          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          title="Update the vacancy"
+        >
+          Update
         </button>
-        <button className="uppercase bg-red-600 text-white font-semibold p-2 rounded-xl hover:opacity-85 duration-100">
-          delete
+        <button
+          className="uppercase bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-red-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          title="Delete the vacancy"
+        >
+          Delete
         </button>
       </div>
     </form>

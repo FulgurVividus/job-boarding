@@ -9,7 +9,16 @@ const SignOutButton: React.FC = () => {
       onClick={signOutAction}
     >
       <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
-      <span className="font-semibold">Sign Out</span>
+      <span
+        className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-text text-transparent"
+        style={{
+          fontFamily: "'Poppins', sans-serif",
+          letterSpacing: "0.02em",
+          textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        Sign Out
+      </span>
     </button>
   );
 };

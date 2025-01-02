@@ -46,14 +46,24 @@ const Page: React.FC<IUserImage> = async () => {
             <img
               src={profilePictureUrl}
               alt={`${userName}'s profile picture`}
-              className="h-8 w-8 rounded-full border-mainSalmon border-1 object-cover"
+              className="h-8 w-8 md:h-10 md:w-10 rounded-full border-mainSalmon border-1 object-cover"
               referrerPolicy="no-referrer"
             />
           </div>
         </div>
 
-        <h1 className="mt-5 md:mt-10 text-lg md:text-2xl font-bold">
-          <span className="text-mainSalmon">{userName}&apos;s</span> &quot;
+        <h1
+          className="mt-5 md:mt-10 text-xl md:text-3xl font-extrabold text-center tracking-tight text-gray-800 dark:text-gray-100 bg-gradient-to-r from-mainSalmon via-mainBlue to-mainGreen bg-clip-text text-transparent drop-shadow-md"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            letterSpacing: "0.05em",
+            textShadow: "2px 2px 3px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <span className="text-mainSalmon underline decoration-wavy decoration-mainBlue underline-offset-4">
+            {userName}&apos;s
+          </span>{" "}
+          &quot;
           <span className="underline decoration-wavy decoration-mainSalmon underline-offset-[4.5px]">
             Applicant
           </span>{" "}
