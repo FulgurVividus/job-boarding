@@ -18,9 +18,9 @@ const Page: React.FC<PageProps> = async ({ params }) => {
   const { vacancyId } = await params;
   const companyVacancy = await getCompanySpecificVacancy(+vacancyId);
   const {
-    // id,
     // created_at,
     // company_id,
+    id,
     title,
     vacancyLocation,
     experienceRequired,
@@ -55,6 +55,7 @@ const Page: React.FC<PageProps> = async ({ params }) => {
       </h1>
 
       <UpdateCompanyVacancy
+        id={id}
         title={title}
         vacancyLocation={vacancyLocation}
         experienceRequired={experienceRequired}

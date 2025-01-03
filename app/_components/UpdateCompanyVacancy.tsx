@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   BriefcaseIcon,
@@ -6,8 +8,14 @@ import {
   AtSymbolIcon,
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
+import {
+  updateCompanyVacancyAction,
+  deleteCompanyVacancyAction,
+} from "@/app/_lib/actions";
+import { useRouter } from "next/navigation";
 
 interface UpdateCompanyVacancyProps {
+  id: number;
   title: string;
   vacancyLocation: string;
   experienceRequired: number;
@@ -16,16 +24,34 @@ interface UpdateCompanyVacancyProps {
 }
 
 const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
+  id,
   title,
   vacancyLocation,
   experienceRequired,
   salary,
   emailContact,
 }) => {
+  const router = useRouter();
+
+  async function handleUpdate(e: any) {
+    e.preventDefault();
+    const form = e.currentTarget.form!;
+    await updateCompanyVacancyAction(new FormData(form));
+
+    router.push("/dashboard/company/vacancies");
+  }
+
+  async function handleDelete(id: number) {
+    await deleteCompanyVacancyAction(id);
+  }
+
   return (
-    <form action="" className="mt-10 flex flex-col justify-between">
+    <form className="mt-10 flex flex-col justify-between">
       {/* inputs div */}
       <div className="flex flex-col gap-6 w-full max-w-lg">
+        {/* Vacancy ID */}
+        <input type="hidden" value={id} name="id" />
+
         {/* Title */}
         <div className="flex items-center gap-3">
           <BriefcaseIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
@@ -72,7 +98,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             Experience:
           </label>
           <input
-            type="number"
+            type="text"
             id="experienceRequired"
             name="experienceRequired"
             defaultValue={experienceRequired}
@@ -117,17 +143,21 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
         </div>
       </div>
 
-      {/* TODO: make button actionable */}
       <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
         <button
           className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
           title="Update the vacancy"
+          type="submit"
+          onClick={handleUpdate}
         >
           Update
         </button>
+
         <button
           className="uppercase bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-red-700 transition-all duration-200 text-sm md:text-base tracking-wide"
           title="Delete the vacancy"
+          type="button"
+          onClick={() => handleDelete(id)}
         >
           Delete
         </button>

@@ -1,8 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import { supabaseClient } from "./supabase";
 import { redirect } from "next/navigation";
+import { getCompanyAllVacancies, getCompanyUser, getUser } from "./services";
 
 interface createCompanyFormDataI {
   companyName: string;
@@ -18,6 +20,14 @@ interface createApplicantFormDataI {
   yearsOfExperience: number;
   birthYear: number;
   user_id: number;
+}
+
+interface updateCompanyVacancyDataI {
+  title: string;
+  vacancyLocation: string;
+  experienceRequired: string;
+  salary: string;
+  emailContact: string;
 }
 
 export async function signInAction() {
@@ -102,4 +112,76 @@ export async function createApplicantAction(formData: FormData) {
   }
 
   redirect("/dashboard/applicant/vacancies");
+}
+
+//# server action for updating a COMPANY vacancy
+export async function updateCompanyVacancyAction(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const id = Number(formData.get("id") as string);
+  const title = formData.get("title")?.slice(0, 100) as string;
+  const vacancyLocation = formData
+    .get("vacancyLocation")
+    ?.slice(0, 200) as string;
+  const experienceRequired = formData
+    .get("experienceRequired")
+    ?.slice(0, 100) as string;
+  const salary = formData.get("salary")?.slice(0, 100) as string;
+  const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
+
+  const updateCompanyVacancyData: updateCompanyVacancyDataI = {
+    title,
+    vacancyLocation,
+    experienceRequired,
+    salary,
+    emailContact,
+  };
+
+  const { data, error } = await supabaseClient
+    .from("vacancies")
+    .update(updateCompanyVacancyData)
+    .eq("id", id);
+
+  if (error) {
+    console.log(`Cannot update the vacancy: ${error}`);
+  }
+
+  revalidatePath("/dashboard/company/vacancies/[vacancyId]", "layout");
+}
+
+//# server action for deleting a COMPANY vacancy
+export async function deleteCompanyVacancyAction(vacancyId: number) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const user = await getUser(session?.user?.email || "");
+  const companyUser = await getCompanyUser(user?.email);
+
+  const companyAllVacancies = await getCompanyAllVacancies(companyUser?.id);
+  const companyAllVacanciesIds: number[] | undefined = companyAllVacancies?.map(
+    (vacancy) => vacancy.id
+  );
+
+  if (!companyAllVacanciesIds?.includes(vacancyId)) {
+    throw new Error(`You are not allowed to delete this vacancy`);
+  }
+
+  const { error } = await supabaseClient
+    .from("vacancies")
+    .delete()
+    .eq("id", vacancyId);
+
+  if (error) {
+    throw new Error(`Vacancy could not be deleted: ${error}`);
+  }
+
+  revalidatePath("/dashboard/company/vacancies/[vacancyId]", "layout");
+  redirect("/dashboard/company/vacancies");
 }

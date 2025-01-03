@@ -42,7 +42,7 @@ export async function getCompanyAllVacancies(id: number) {
   const { data: vacancies, error } = await supabaseClient
     .from("vacancies")
     .select("*")
-    .eq("id", id);
+    .eq("company_id", id);
 
   if (error) {
     console.log(`Error in getting all company's vacancies: ${error}`);
