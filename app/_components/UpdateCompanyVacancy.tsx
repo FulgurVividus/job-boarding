@@ -12,7 +12,6 @@ import {
   updateCompanyVacancyAction,
   deleteCompanyVacancyAction,
 } from "@/app/_lib/actions";
-import { useRouter } from "next/navigation";
 
 interface UpdateCompanyVacancyProps {
   id: number;
@@ -31,14 +30,11 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
   salary,
   emailContact,
 }) => {
-  const router = useRouter();
-
   async function handleUpdate(e: any) {
     e.preventDefault();
     const form = e.currentTarget.form!;
-    await updateCompanyVacancyAction(new FormData(form));
 
-    router.push("/dashboard/company/vacancies");
+    await updateCompanyVacancyAction(new FormData(form));
   }
 
   async function handleDelete(id: number) {

@@ -30,6 +30,15 @@ interface updateCompanyVacancyDataI {
   emailContact: string;
 }
 
+interface publishCompanyVacancyDataI {
+  company_id: number;
+  title: string;
+  vacancyLocation: string;
+  experienceRequired: string;
+  salary: string;
+  emailContact: string;
+}
+
 export async function signInAction() {
   await signIn("google", { redirectTo: "/role" });
 }
@@ -150,7 +159,8 @@ export async function updateCompanyVacancyAction(formData: FormData) {
     console.log(`Cannot update the vacancy: ${error}`);
   }
 
-  revalidatePath("/dashboard/company/vacancies/[vacancyId]", "layout");
+  revalidatePath("/dashboard/company/vacancies", "layout");
+  redirect("/dashboard/company/vacancies");
 }
 
 //# server action for deleting a COMPANY vacancy
@@ -182,6 +192,48 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
     throw new Error(`Vacancy could not be deleted: ${error}`);
   }
 
-  revalidatePath("/dashboard/company/vacancies/[vacancyId]", "layout");
+  revalidatePath("/dashboard/company/vacancies", "layout");
+  redirect("/dashboard/company/vacancies");
+}
+
+//# server action for publishing a COMPANY vacancy
+export async function publishCompanyVacancyAction(formData: FormData) {
+  const session = auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const company_id = Number(formData.get("company_id") as string);
+  const title = formData.get("title")?.slice(0, 100) as string;
+  const vacancyLocation = formData
+    .get("vacancyLocation")
+    ?.slice(0, 200) as string;
+  const experienceRequired = formData
+    .get("experienceRequired")
+    ?.slice(0, 100) as string;
+  const salary = formData.get("salary")?.slice(0, 100) as string;
+  const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
+
+  const publishCompanyVacancyData: publishCompanyVacancyDataI = {
+    company_id,
+    title,
+    vacancyLocation,
+    experienceRequired,
+    salary,
+    emailContact,
+  };
+
+  const { error } = await supabaseClient
+    .from("vacancies")
+    .insert([publishCompanyVacancyData])
+    .select()
+    .single();
+
+  if (error) {
+    throw new Error(`Vacancy could not be published: ${error}`);
+  }
+
+  revalidatePath("/dashboard/company/vacancies", "layout");
   redirect("/dashboard/company/vacancies");
 }

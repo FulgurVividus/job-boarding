@@ -6,6 +6,7 @@ import {
   AtSymbolIcon,
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
+import { publishCompanyVacancyAction } from "@/app/_lib/actions";
 
 interface AddCompanyVacancyProps {
   companyUser:
@@ -23,9 +24,15 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
   companyUser,
 }) => {
   return (
-    <form action="" className="mt-10 flex flex-col justify-between">
+    <form
+      action={publishCompanyVacancyAction}
+      className="mt-10 flex flex-col justify-between"
+    >
       {/* inputs div */}
       <div className="flex flex-col gap-6 w-full max-w-lg">
+        {/* Company ID */}
+        <input type="hidden" value={companyUser?.id} name="company_id" />
+
         {/* Title Input */}
         <div className="flex items-center gap-3">
           <BriefcaseIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
