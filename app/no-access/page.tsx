@@ -15,17 +15,25 @@ const Page: React.FC = async () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="font-semibold text-xl text-center">No access 🛑</h1>
-      <h1 className="font-semibold text-xl mt-2 text-center">
+    <div className="flex flex-col justify-center items-center h-screen px-4">
+      <h1 className="font-sans text-lg md:text-2xl font-semibold text-center text-gray-800 dark:text-gray-200">
+        No Access{" "}
+        <span className="text-red-600 font-extrabold text-xl md:text-3xl">
+          !
+        </span>
+      </h1>
+
+      <h1 className="font-sans text-base md:text-xl mt-4 text-center text-gray-700 dark:text-gray-300">
         You cannot access because your role is{" "}
         <span className="text-mainSalmon font-extrabold capitalize">
           {session?.user?.role || "undefined"}
         </span>
       </h1>
 
-      <div>
-        <GoBack fallbackURL={fallbackURL}>Go back</GoBack>
+      <div className="mt-6">
+        <GoBack fallbackURL={fallbackURL}>
+          <span className="px-6 py-3">Go Back</span>
+        </GoBack>
       </div>
     </div>
   );

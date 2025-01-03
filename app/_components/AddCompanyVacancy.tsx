@@ -25,11 +25,15 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
   return (
     <form action="" className="mt-10 flex flex-col justify-between">
       {/* inputs div */}
-      <div className="flex flex-col gap-5 w-full max-w-lg">
-        <div className="flex items-center gap-2">
-          <BriefcaseIcon className="h-5 w-5 flex-shrink-0" />
-          <label htmlFor="title" className="font-serif text-lg font-semibold">
-            Tittle:
+      <div className="flex flex-col gap-6 w-full max-w-lg">
+        {/* Title Input */}
+        <div className="flex items-center gap-3">
+          <BriefcaseIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
+          <label
+            htmlFor="title"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+          >
+            Title:
           </label>
           <input
             type="text"
@@ -37,48 +41,16 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
             name="title"
             required
             placeholder="E.g: Software Engineer"
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-3 md:gap-2">
-          <AcademicCapIcon className="h-5 w-5 flex-shrink-0" />
-          <label
-            htmlFor="experienceRequired"
-            className="font-serif text-lg font-semibold"
-          >
-            Years of experience:
-          </label>
-          <input
-            type="number"
-            id="experienceRequired"
-            name="experienceRequired"
-            required
-            placeholder="E.g: 2"
-            className="bg-transparent text-lg outline-none"
-          />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <CurrencyDollarIcon className="h-5 w-5 flex-shrink-0" />
-          <label htmlFor="salary" className="font-serif text-lg font-semibold">
-            Salary:
-          </label>
-          <input
-            type="text"
-            id="salary"
-            name="salary"
-            required
-            placeholder="E.g: 100.000$"
-            className="bg-transparent text-lg outline-none"
-          />
-        </div>
-
-        <div className="flex items-center gap-2">
-          <MapPinIcon className="h-5 w-5 flex-shrink-0" />
+        {/* Location Input */}
+        <div className="flex items-center gap-3">
+          <MapPinIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="vacancyLocation"
-            className="font-serif text-lg font-semibold"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
           >
             Location:
           </label>
@@ -89,15 +61,54 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
             required
             defaultValue={companyUser?.location}
             placeholder="E.g: London"
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <AtSymbolIcon className="h-5 w-5 flex-shrink-0" />
+        {/* Experience Input */}
+        <div className="flex items-center gap-3">
+          <AcademicCapIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
+          <label
+            htmlFor="experienceRequired"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+          >
+            Experience:
+          </label>
+          <input
+            type="text"
+            id="experienceRequired"
+            name="experienceRequired"
+            required
+            placeholder="E.g: 2 years"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+          />
+        </div>
+
+        {/* Salary Input */}
+        <div className="flex items-center gap-3">
+          <CurrencyDollarIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
+          <label
+            htmlFor="salary"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+          >
+            Salary:
+          </label>
+          <input
+            type="text"
+            id="salary"
+            name="salary"
+            required
+            placeholder="E.g: 100,000$"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+          />
+        </div>
+
+        {/* Email Input */}
+        <div className="flex items-center gap-3">
+          <AtSymbolIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="emailContact"
-            className="font-serif text-lg font-semibold"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
           >
             Email:
           </label>
@@ -108,15 +119,18 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
             required
             defaultValue={companyUser?.contactEmail}
             placeholder="E.g: company@gmail.com"
-            className="bg-transparent text-lg outline-none"
+            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
       </div>
 
       {/* TODO: make button actionable */}
-      <div className="flex items-center justify-end mt-10">
-        <button className="uppercase bg-green-600 text-white font-semibold py-2 px-4 rounded-xl hover:opacity-85 duration-100">
-          add
+      <div className="flex items-center justify-start mt-10">
+        <button
+          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          title="Publish the vacancy"
+        >
+          publish
         </button>
       </div>
     </form>
