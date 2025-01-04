@@ -29,7 +29,7 @@ const Page: React.FC = async () => {
 
   return (
     <>
-      {!applicantUser || !companyUser ? (
+      {!applicantUser && !companyUser ? (
         <section>
           {user?.role === "company" ? (
             <CompanyForm user={user} />
