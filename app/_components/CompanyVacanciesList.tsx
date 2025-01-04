@@ -7,7 +7,13 @@ import {
 import CompanyVacancyItem from "./CompanyVacancyItem";
 import { auth } from "@/app/_lib/auth";
 
-const CompanyVacanciesList: React.FC = async () => {
+interface CompanyVacanciesListProps {
+  query?: string;
+}
+
+const CompanyVacanciesList: React.FC<CompanyVacanciesListProps> = async ({
+  query,
+}) => {
   const session = await auth();
 
   const user = await getUser(session?.user?.email || "");
@@ -17,7 +23,10 @@ const CompanyVacanciesList: React.FC = async () => {
 
   return (
     <section>
-      <CompanyVacancyItem companyAllVacancies={companyAllVacancies || []} />
+      <CompanyVacancyItem
+        companyAllVacancies={companyAllVacancies || []}
+        query={query}
+      />
     </section>
   );
 };

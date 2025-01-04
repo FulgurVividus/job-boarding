@@ -1,4 +1,5 @@
 import ApplicantVacanciesList from "@/app/_components/ApplicantVacanciesList";
+import SearchBarApplicant from "@/app/_components/SearchBarApplicant";
 import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
 import { getApplicantUser, getUser } from "@/app/_lib/services";
@@ -9,7 +10,14 @@ import React from "react";
 
 type IUserImage = string | StaticImageData;
 
-const Page: React.FC<IUserImage> = async () => {
+interface SearchParams {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}
+
+const Page: React.FC<IUserImage | SearchParams> = async ({ searchParams }) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
@@ -19,6 +27,9 @@ const Page: React.FC<IUserImage> = async () => {
 
   const applicantUser = await getApplicantUser(user?.email);
   const userName: string = applicantUser?.fullName?.split(" ").at(0) || "User";
+
+  const searchParamsAwait = await searchParams;
+  const query: string = searchParamsAwait?.query || "";
 
   if (!role) {
     redirect("/role");
@@ -39,8 +50,7 @@ const Page: React.FC<IUserImage> = async () => {
           <SignOutButton />
 
           {/* TODO: search bar */}
-
-          {/* TODO: add filters */}
+          <SearchBarApplicant placeholder={`Search for vacancies...`} />
 
           <div>
             <img
@@ -71,7 +81,7 @@ const Page: React.FC<IUserImage> = async () => {
         </h1>
 
         <div className="mt-10">
-          <ApplicantVacanciesList />
+          <ApplicantVacanciesList query={query} />
         </div>
       </main>
     </>

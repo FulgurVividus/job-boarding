@@ -7,12 +7,18 @@ import { StaticImageData } from "next/image";
 import React from "react";
 import noUser from "@/public/no-user.png";
 import { redirect } from "next/navigation";
+import SearchBarCompany from "@/app/_components/SearchBarCompany";
 
 type IUserImage = string | StaticImageData;
 
-const Page: React.FC = async () => {
-  // TODO: get company id dynamically
+interface SearchParams {
+  searchParams?: {
+    query?: string;
+    page?: string;
+  };
+}
 
+const Page: React.FC<SearchParams> = async ({ searchParams }) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
@@ -22,6 +28,9 @@ const Page: React.FC = async () => {
 
   const companyUser = await getCompanyUser(user?.email);
   const userName: string = companyUser?.companyName?.split(" ").at(0) || "User";
+
+  const searchParamsAwait = await searchParams;
+  const query: string = searchParamsAwait?.query || "";
 
   if (!role) {
     redirect("/role");
@@ -38,12 +47,14 @@ const Page: React.FC = async () => {
   return (
     <>
       <main className="px-10 py-5 md:px-20 md:py-10 max-w-full">
-        <div className="flex items-center justify-between">
-          <SignOutButton />
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+          <div className="order-1 md:order-none">
+            <SignOutButton />
+          </div>
 
-          {/* TODO: search bar */}
+          <SearchBarCompany placeholder={`Search ${userName}'s vacancies...`} />
 
-          <div className="flex items-center gap-2 md:gap-5">
+          <div className="flex items-center gap-1 md:gap-2 order-1 md:order-none">
             <LinkButton
               href={`/dashboard/company/vacancies/add`}
               title="Add a vacancy"
@@ -76,7 +87,7 @@ const Page: React.FC = async () => {
         </h1>
 
         <div className="mt-10">
-          <CompanyVacanciesList />
+          <CompanyVacanciesList query={query} />
         </div>
       </main>
     </>
