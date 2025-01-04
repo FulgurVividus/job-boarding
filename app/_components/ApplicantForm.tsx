@@ -64,10 +64,10 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 htmlFor="yearsOfExperience"
                 className="font-serif text-lg font-semibold"
               >
-                Years of experience:
+                Experience:
               </label>
               <input
-                type="number"
+                type="text"
                 id="yearsOfExperience"
                 name="yearsOfExperience"
                 className="bg-transparent text-lg outline-none flex-1"

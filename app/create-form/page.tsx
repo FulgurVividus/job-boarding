@@ -1,6 +1,6 @@
 import React from "react";
 import { auth } from "@/app/_lib/auth";
-import { getUser } from "@/app/_lib/services";
+import { getApplicantUser, getCompanyUser, getUser } from "@/app/_lib/services";
 import CompanyForm from "@/app/_components/CompanyForm";
 import ApplicantForm from "@/app/_components/ApplicantForm";
 import { redirect } from "next/navigation";
@@ -18,6 +18,9 @@ const Page: React.FC = async () => {
   const fullName: string | undefined = user?.fullName;
   const role: string | undefined = user?.role;
 
+  const applicantUser = await getApplicantUser(user?.email);
+  const companyUser = await getCompanyUser(user?.email);
+
   const createForm: CreateFormI = { fullName, role };
 
   if (!session?.user?.role) {
@@ -26,7 +29,7 @@ const Page: React.FC = async () => {
 
   return (
     <>
-      {!user?.role ? (
+      {!applicantUser || !companyUser ? (
         <section>
           {user?.role === "company" ? (
             <CompanyForm user={user} />
