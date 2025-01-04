@@ -61,7 +61,7 @@ export async function createCompanyAction(formData: FormData) {
   const contactNumber = formData.get("contactNumber")?.slice(0, 90) as string;
   const user_id = session?.user?.userId as number;
 
-  if (!/^\+?\d{3,20}$/.test(contactNumber)) {
+  if (!/^\+\s?\d{2,3}(?:\s?\d{2,4})+$/.test(contactNumber)) {
     throw new Error(`Invalid contact number`);
   }
 
