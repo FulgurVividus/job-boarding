@@ -32,7 +32,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
   return (
     <>
       {!filteredCompanyAllVacancies.length && !query ? (
-        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
           {companyAllVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/company/vacancies/${vacancy.id}`}>
@@ -62,7 +62,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
       ) : null}
 
       {filteredCompanyAllVacancies.length > 0 && (
-        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
           {filteredCompanyAllVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/company/vacancies/${vacancy.id}`}>

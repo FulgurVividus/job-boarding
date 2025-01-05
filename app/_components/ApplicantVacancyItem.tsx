@@ -31,7 +31,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
   return (
     <>
       {!filteredAllVacancies.length && !query ? (
-        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
           {allVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/applicant/vacancies/${vacancy.id}`}>
@@ -61,7 +61,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
       ) : null}
 
       {filteredAllVacancies.length > 0 && (
-        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
           {filteredAllVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/applicant/vacancies/${vacancy.id}`}>

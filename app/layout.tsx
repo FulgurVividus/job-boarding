@@ -14,8 +14,8 @@ function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-[#FFFAF0] h-screen">
+    <html lang="en" className="bg-[#FFFAF0] h-full">
+      <body>
         <RoleProvider>
           <Provider>{children}</Provider>
         </RoleProvider>
