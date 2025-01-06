@@ -67,7 +67,6 @@ const Page: React.FC<IUserImage | SearchParams> = async ({ searchParams }) => {
         <div className="flex items-center justify-between">
           <SignOutButton />
 
-          {/* TODO: search bar */}
           <SearchBarApplicant placeholder={`Search for vacancies...`} />
 
           <div>

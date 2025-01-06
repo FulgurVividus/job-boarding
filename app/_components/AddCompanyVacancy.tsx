@@ -131,7 +131,6 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
         </div>
       </div>
 
-      {/* TODO: make button actionable */}
       <div className="flex items-center justify-start mt-10">
         <button
           className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
