@@ -2,12 +2,17 @@ import CompanyVacanciesList from "@/app/_components/CompanyVacanciesList";
 import LinkButton from "@/app/_components/LinkButton";
 import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
-import { getCompanyUser, getUser } from "@/app/_lib/services";
+import {
+  getCompanyAllVacancies,
+  getCompanyUser,
+  getUser,
+} from "@/app/_lib/services";
 import { StaticImageData } from "next/image";
 import React from "react";
 import noUser from "@/public/no-user.png";
 import { redirect } from "next/navigation";
 import SearchBarCompany from "@/app/_components/SearchBarCompany";
+import PaginationCompany from "@/app/_components/PaginationCompany";
 
 type IUserImage = string | StaticImageData;
 
@@ -15,6 +20,7 @@ interface SearchParams {
   searchParams?: {
     query?: string;
     page?: string;
+    per_page?: string;
   };
 }
 
@@ -31,6 +37,18 @@ const Page: React.FC<SearchParams> = async ({ searchParams }) => {
 
   const searchParamsAwait = await searchParams;
   const query: string = searchParamsAwait?.query || "";
+
+  // pagination
+
+  const page = searchParamsAwait?.page ?? 1;
+  const per_page = searchParamsAwait?.per_page ?? 8;
+  const companyAllVacancies = await getCompanyAllVacancies(companyUser?.id);
+
+  const start: number = (Number(page) - 1) * Number(per_page);
+  const end: number = start + Number(per_page);
+
+  const paginatedCompanyAllVacancies = companyAllVacancies?.slice(start, end);
+  const companyAllVacanciesLength: number = companyAllVacancies?.length || 0;
 
   if (!role) {
     redirect("/role");
@@ -86,8 +104,20 @@ const Page: React.FC<SearchParams> = async ({ searchParams }) => {
           Page
         </h1>
 
+        {/* TODO: suspense */}
         <div className="mt-10">
-          <CompanyVacanciesList query={query} />
+          <CompanyVacanciesList
+            query={query}
+            paginatedCompanyAllVacancies={paginatedCompanyAllVacancies || []}
+          />
+
+          <div className="mt-10 flex justify-center items-center">
+            <PaginationCompany
+              hasNextPage={end < companyAllVacanciesLength}
+              hasPrevPage={start > 0}
+              companyAllVacanciesLength={companyAllVacanciesLength || 0}
+            />
+          </div>
         </div>
       </main>
     </>

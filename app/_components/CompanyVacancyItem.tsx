@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 
 interface CompanyAllVacanciesProps {
-  companyAllVacancies: {
+  paginatedCompanyAllVacancies: {
     id: number;
     created_at: string;
     company_id: number;
@@ -22,18 +22,19 @@ interface CompanyAllVacanciesProps {
 }
 
 const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
-  companyAllVacancies = [],
+  paginatedCompanyAllVacancies = [],
   query,
 }) => {
-  const filteredCompanyAllVacancies = companyAllVacancies.filter((vacancy) =>
-    vacancy.title.toLowerCase().includes(query?.toLowerCase() || "")
+  const filteredCompanyAllVacancies = paginatedCompanyAllVacancies.filter(
+    (vacancy) =>
+      vacancy.title.toLowerCase().includes(query?.toLowerCase() || "")
   );
 
   return (
     <>
       {!filteredCompanyAllVacancies.length && !query ? (
         <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
-          {companyAllVacancies.map((vacancy) => (
+          {paginatedCompanyAllVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/company/vacancies/${vacancy.id}`}>
                 <li className="hover:scale-105 transition-all duration-400 ease-in-out">
@@ -92,7 +93,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
       )}
 
       {/* No vacancies published message */}
-      {!companyAllVacancies.length && !query ? (
+      {!paginatedCompanyAllVacancies.length && !query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
           <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
             You have no vacancies yet

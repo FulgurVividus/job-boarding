@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 
 interface AllVacanciesProps {
-  allVacancies: {
+  paginatedAllVacancies: {
     id: number;
     created_at: string;
     title: string;
@@ -21,10 +21,10 @@ interface AllVacanciesProps {
 }
 
 const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
-  allVacancies,
+  paginatedAllVacancies,
   query,
 }) => {
-  const filteredAllVacancies = allVacancies.filter((vacancy) =>
+  const filteredAllVacancies = paginatedAllVacancies.filter((vacancy) =>
     vacancy.title.toLowerCase().includes(query?.toLowerCase() || "")
   );
 
@@ -32,7 +32,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
     <>
       {!filteredAllVacancies.length && !query ? (
         <div className="flex flex-col md:flex-row items-center gap-5 md:gap-10 flex-wrap">
-          {allVacancies.map((vacancy) => (
+          {paginatedAllVacancies.map((vacancy) => (
             <ul key={vacancy.id}>
               <Link href={`/dashboard/applicant/vacancies/${vacancy.id}`}>
                 <li className="hover:scale-105 transition-all duration-400 ease-in-out">
@@ -91,7 +91,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
       )}
 
       {/* No vacancies message */}
-      {!allVacancies.length && !query ? (
+      {!paginatedAllVacancies.length && !query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
           <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
             <span className="text-mainSalmon font-medium">No</span> vacancies

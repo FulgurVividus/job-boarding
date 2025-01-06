@@ -1,8 +1,13 @@
 import ApplicantVacanciesList from "@/app/_components/ApplicantVacanciesList";
+import PaginationApplicant from "@/app/_components/PaginationApplicant";
 import SearchBarApplicant from "@/app/_components/SearchBarApplicant";
 import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
-import { getApplicantUser, getUser } from "@/app/_lib/services";
+import {
+  getAllVacancies,
+  getApplicantUser,
+  getUser,
+} from "@/app/_lib/services";
 import noUser from "@/public/no-user.png";
 import { StaticImageData } from "next/image";
 import { redirect } from "next/navigation";
@@ -14,6 +19,7 @@ interface SearchParams {
   searchParams?: {
     query?: string;
     page?: string;
+    per_page?: string;
   };
 }
 
@@ -30,6 +36,18 @@ const Page: React.FC<IUserImage | SearchParams> = async ({ searchParams }) => {
 
   const searchParamsAwait = await searchParams;
   const query: string = searchParamsAwait?.query || "";
+
+  // pagination
+
+  const page = searchParamsAwait?.page ?? 1;
+  const per_page = searchParamsAwait?.per_page ?? 8;
+  const allVacancies = await getAllVacancies();
+
+  const start: number = (Number(page) - 1) * Number(per_page);
+  const end: number = start + Number(per_page);
+
+  const paginatedAllVacancies = allVacancies?.slice(start, end);
+  const allVacanciesLength: number = allVacancies?.length || 0;
 
   if (!role) {
     redirect("/role");
@@ -80,8 +98,20 @@ const Page: React.FC<IUserImage | SearchParams> = async ({ searchParams }) => {
           Vacancies Page&quot;
         </h1>
 
+        {/* TODO: suspense */}
         <div className="mt-10">
-          <ApplicantVacanciesList query={query} />
+          <ApplicantVacanciesList
+            paginatedAllVacancies={paginatedAllVacancies || []}
+            query={query}
+          />
+
+          <div>
+            <PaginationApplicant
+              hasNextPage={end < allVacanciesLength}
+              hasPrevPage={start > 0}
+              allVacanciesLength={allVacanciesLength || 0}
+            />
+          </div>
         </div>
       </main>
     </>
