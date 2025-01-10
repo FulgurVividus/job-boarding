@@ -97,7 +97,6 @@ const Page: React.FC<SearchParams> = async ({ searchParams }) => {
           Vacancies Page&quot;
         </h1>
 
-        {/* TODO: suspense */}
         <div className="mt-10">
           <ApplicantVacanciesList
             paginatedAllVacancies={paginatedAllVacancies || []}

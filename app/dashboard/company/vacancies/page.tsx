@@ -104,7 +104,6 @@ const Page: React.FC<SearchParams> = async ({ searchParams }) => {
           Page
         </h1>
 
-        {/* TODO: suspense */}
         <div className="mt-10">
           <CompanyVacanciesList
             query={query}
