@@ -13,6 +13,13 @@ import noUser from "@/public/no-user.png";
 import { redirect } from "next/navigation";
 import SearchBarCompany from "@/app/_components/SearchBarCompany";
 import PaginationCompany from "@/app/_components/PaginationCompany";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Company's vacancies",
+  description:
+    "Company's vacancies page, where vacancies belong to specific company created by",
+};
 
 type IUserImage = string | StaticImageData;
 

@@ -1,5 +1,11 @@
 import React from "react";
 import SignInButton from "@/app/_components/SignInButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login",
+  description: "Login page",
+};
 
 const Page: React.FC = () => {
   return (

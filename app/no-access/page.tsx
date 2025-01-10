@@ -1,6 +1,12 @@
 import React from "react";
 import { auth } from "@/app/_lib/auth";
 import GoBack from "@/app/_components/GoBack";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "No-access",
+  description: "User cannot go to opposite role's dashboard",
+};
 
 const Page: React.FC = async () => {
   const session = await auth();

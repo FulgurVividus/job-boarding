@@ -3,6 +3,12 @@ import { auth } from "@/app/_lib/auth";
 import { getCompanyUser, getUser } from "@/app/_lib/services";
 import { redirect } from "next/navigation";
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Publish",
+  description: "In this page, company user can publish a new vacancy",
+};
 
 const Page: React.FC = async () => {
   const session = await auth();

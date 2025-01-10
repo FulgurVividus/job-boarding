@@ -12,6 +12,13 @@ import noUser from "@/public/no-user.png";
 import { StaticImageData } from "next/image";
 import { redirect } from "next/navigation";
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Applicant's vacancies",
+  description:
+    "Applicant's vacancies page, where applicant can browse all available vacancies",
+};
 
 type IUserImage = string | StaticImageData;
 

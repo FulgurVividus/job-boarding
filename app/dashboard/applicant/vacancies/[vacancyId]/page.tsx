@@ -12,6 +12,19 @@ import {
 import { auth } from "@/app/_lib/auth";
 import { redirect } from "next/navigation";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { vacancyId: string };
+}) {
+  const { vacancyId } = await params;
+  const { title } = await getVacancy(+vacancyId);
+
+  return {
+    title: `${title}`,
+  };
+}
+
 interface PageProps {
   params: {
     vacancyId: string;

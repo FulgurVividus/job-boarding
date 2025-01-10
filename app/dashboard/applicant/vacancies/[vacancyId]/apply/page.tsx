@@ -2,6 +2,13 @@ import { auth } from "@/app/_lib/auth";
 import { getApplicantUser, getUser, getVacancy } from "@/app/_lib/services";
 import { redirect } from "next/navigation";
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Apply",
+  description:
+    "Applicant can easily apply for the vacancy by submitting the form",
+};
 
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;

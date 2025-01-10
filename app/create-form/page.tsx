@@ -5,6 +5,13 @@ import CompanyForm from "@/app/_components/CompanyForm";
 import ApplicantForm from "@/app/_components/ApplicantForm";
 import { redirect } from "next/navigation";
 import WelcomeBack from "@/app/_components/WelcomeBack";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create-form",
+  description:
+    "All users must create form by filling specific data according to their chosen role",
+};
 
 interface CreateFormI {
   fullName: string | undefined;

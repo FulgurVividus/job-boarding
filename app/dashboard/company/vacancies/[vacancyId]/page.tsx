@@ -8,6 +8,19 @@ import {
 import { redirect } from "next/navigation";
 import React from "react";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { vacancyId: string };
+}) {
+  const { vacancyId } = await params;
+  const { title } = await getCompanySpecificVacancy(+vacancyId);
+
+  return {
+    title: `${title}`,
+  };
+}
+
 interface PageProps {
   params: {
     vacancyId: string;

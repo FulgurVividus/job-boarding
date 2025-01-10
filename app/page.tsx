@@ -2,6 +2,12 @@ import React from "react";
 import LinkButton from "./_components/LinkButton";
 import backgroundImage1 from "@/public/version_1.png";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Welcome to Jobless",
+};
 
 const Page: React.FC = () => {
   return (
