@@ -23,7 +23,7 @@ interface SearchParams {
   };
 }
 
-const Page: React.FC<IUserImage | SearchParams> = async ({ searchParams }) => {
+const Page: React.FC<SearchParams> = async ({ searchParams }) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
