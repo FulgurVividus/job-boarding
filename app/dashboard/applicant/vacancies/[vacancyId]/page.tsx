@@ -1,5 +1,10 @@
 import LinkButton from "@/app/_components/LinkButton";
-import { getApplicantUser, getUser, getVacancy } from "@/app/_lib/services";
+import {
+  getAllVacancies,
+  getApplicantUser,
+  getUser,
+  getVacancy,
+} from "@/app/_lib/services";
 import { differenceInDays } from "date-fns";
 import React from "react";
 import {
@@ -29,6 +34,19 @@ interface PageProps {
   params: {
     vacancyId: string;
   };
+}
+
+export const revalidate = 1;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const allVacancies = await getAllVacancies();
+
+  const allVacanciesId = allVacancies?.map((vacancy) => ({
+    vacancyId: String(vacancy.id),
+  }));
+
+  return allVacanciesId;
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {

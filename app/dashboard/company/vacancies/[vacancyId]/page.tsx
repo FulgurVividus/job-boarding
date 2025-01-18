@@ -1,6 +1,7 @@
 import UpdateCompanyVacancy from "@/app/_components/UpdateCompanyVacancy";
 import { auth } from "@/app/_lib/auth";
 import {
+  getAllVacancies,
   getCompanySpecificVacancy,
   getCompanyUser,
   getUser,
@@ -25,6 +26,19 @@ interface PageProps {
   params: {
     vacancyId: string;
   };
+}
+
+export const revalidate = 1;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const allVacancies = await getAllVacancies();
+
+  const allVacanciesIds = allVacancies?.map((vacancy) => ({
+    vacancyId: String(vacancy.id),
+  }));
+
+  return allVacanciesIds;
 }
 
 const Page: React.FC<PageProps> = async ({ params }) => {

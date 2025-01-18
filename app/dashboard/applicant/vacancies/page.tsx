@@ -30,6 +30,8 @@ interface SearchParams {
   };
 }
 
+export const revalidate = 1;
+
 const Page: React.FC<SearchParams> = async ({ searchParams }) => {
   const session = await auth();
 
