@@ -6,7 +6,7 @@ const SignOutButton: React.FC = () => {
   return (
     <div className="group">
       <button
-        className="flex items-center justify-center group-hover:bg-gray-400 group-hover:rounded-md group-hover:text-white group-transition-all duration-200 px-2"
+        className="flex items-center justify-center group-hover:bg-gray-400 group-hover:rounded-md group-hover:text-white group-transition-all duration-200 py-1 px-2"
         onClick={signOutAction}
         title="Sign out"
       >
