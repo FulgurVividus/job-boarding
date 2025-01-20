@@ -39,6 +39,12 @@ interface publishCompanyVacancyDataI {
   emailContact: string;
 }
 
+interface applyForVacancyDataI {
+  vacancy_id: number;
+  applicant_id: number;
+  status: string;
+}
+
 export async function signInAction() {
   await signIn("google", { redirectTo: "/role" });
 }
@@ -236,4 +242,47 @@ export async function publishCompanyVacancyAction(formData: FormData) {
 
   revalidatePath("/dashboard/company/vacancies", "layout");
   redirect("/dashboard/company/vacancies");
+}
+
+//# server action for applying for a vacancy
+export async function applyForVacancyAction(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+
+  if (role !== "applicant") {
+    throw new Error(`Your role must be "applicant"`);
+  }
+
+  const vacancy_id = Number(formData.get("vacancy_id") as string);
+  const applicant_id = Number(formData.get("applicant_id") as string);
+  const status: string = "applied";
+
+  const applyForVacancyData: applyForVacancyDataI = {
+    vacancy_id,
+    applicant_id,
+    status,
+  };
+
+  const { error } = await supabaseClient
+    .from("applications")
+    .insert([applyForVacancyData])
+    .select()
+    .single();
+
+  if (error) {
+    throw new Error(`Could not apply for the vacancy: ${error}`);
+  }
+
+  revalidatePath("/dashboard/applicant/vacancies", "layout");
+  redirect("/dashboard/applicant/vacancies");
 }

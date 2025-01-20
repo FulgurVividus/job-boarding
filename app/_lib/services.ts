@@ -149,3 +149,22 @@ export async function getApplicantUser(email: string) {
 
   return applicantUser;
 }
+
+// get vacancy status
+export async function getVacancyStatus(
+  vacancy_id: number,
+  applicant_id: number
+) {
+  const { data, error } = await supabaseClient
+    .from("applications")
+    .select("*")
+    .eq("vacancy_id", vacancy_id)
+    .eq("applicant_id", applicant_id)
+    .single();
+
+  if (error) {
+    console.log(`Error in getting vacancy status: ${error}`);
+  }
+
+  return data;
+}
