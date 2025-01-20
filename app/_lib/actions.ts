@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
-import { supabaseServer } from "./supabase";
+import { supabaseClient } from "./supabase";
 import { redirect } from "next/navigation";
 import { getCompanyAllVacancies, getCompanyUser, getUser } from "./services";
 
@@ -73,7 +73,7 @@ export async function createCompanyAction(formData: FormData) {
     user_id,
   };
 
-  const { data, error } = await supabaseServer
+  const { data, error } = await supabaseClient
     .from("companies")
     .insert([createCompanyFormData])
     .select()
@@ -110,7 +110,7 @@ export async function createApplicantAction(formData: FormData) {
     user_id,
   };
 
-  const { data, error } = await supabaseServer
+  const { data, error } = await supabaseClient
     .from("applicants")
     .insert([createApplicantFormData])
     .select()
@@ -150,7 +150,7 @@ export async function updateCompanyVacancyAction(formData: FormData) {
     emailContact,
   };
 
-  const { data, error } = await supabaseServer
+  const { data, error } = await supabaseClient
     .from("vacancies")
     .update(updateCompanyVacancyData)
     .eq("id", id);
@@ -183,7 +183,7 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
     throw new Error(`You are not allowed to delete this vacancy`);
   }
 
-  const { error } = await supabaseServer
+  const { error } = await supabaseClient
     .from("vacancies")
     .delete()
     .eq("id", vacancyId);
@@ -224,7 +224,7 @@ export async function publishCompanyVacancyAction(formData: FormData) {
     emailContact,
   };
 
-  const { error } = await supabaseServer
+  const { error } = await supabaseClient
     .from("vacancies")
     .insert([publishCompanyVacancyData])
     .select()
