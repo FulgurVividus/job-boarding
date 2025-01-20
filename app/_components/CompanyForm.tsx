@@ -32,7 +32,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="companyName"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Company name:
               </label>
@@ -47,7 +47,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="location"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Location:
               </label>
@@ -62,7 +62,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="contactEmail"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Contact email:
               </label>
@@ -78,7 +78,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="contactNumber"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Contact number:
               </label>

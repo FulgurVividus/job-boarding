@@ -96,6 +96,7 @@ const Page: React.FC<SearchParams> = async ({ searchParams }) => {
                 alt={`${userName}'s profile picture`}
                 className="h-8 w-8 md:h-10 md:w-10 rounded-full border-mainSalmon border-1 object-cover"
                 referrerPolicy="no-referrer"
+                title="Profile picture"
               />
             </div>
           </div>

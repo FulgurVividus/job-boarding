@@ -32,7 +32,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="fullName"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Full name:
               </label>
@@ -48,7 +48,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="email"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Email:
               </label>
@@ -64,7 +64,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="yearsOfExperience"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Experience:
               </label>
@@ -79,7 +79,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="birthYear"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
               >
                 Birth year:
               </label>
