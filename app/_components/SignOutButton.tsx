@@ -6,13 +6,13 @@ const SignOutButton: React.FC = () => {
   return (
     <div className="group">
       <button
-        className="flex items-center justify-center group-hover:bg-gray-400 group-hover:rounded-md group-hover:text-white group-transition-all duration-300 px-2"
+        className="flex items-center justify-center group-hover:bg-gray-400 group-hover:rounded-md group-hover:text-white group-transition-all duration-200 px-2"
         onClick={signOutAction}
         title="Sign out"
       >
         <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
         <span
-          className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-tex group-hover:text-white duration-300"
+          className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-tex group-hover:text-white duration-200"
           style={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "0.02em",
