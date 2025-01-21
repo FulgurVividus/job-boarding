@@ -37,8 +37,8 @@ export async function generateStaticParams() {
   return allVacanciesId;
 }
 
-const Page = async ({ params }: { params: { vacancyId: string } }) => {
-  const { vacancyId } = params;
+const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
+  const { vacancyId } = await params;
   const vacancy = await getVacancy(+vacancyId);
 
   const session = await auth();
