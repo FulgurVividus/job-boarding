@@ -13,19 +13,13 @@ import ApplyForVacancy from "@/app/_components/ApplyForVacancy";
 export async function generateMetadata({
   params,
 }: {
-  params: { vacancyId: string };
+  params: Promise<{ vacancyId: string }>;
 }) {
   const { vacancyId } = await params;
   const { title } = await getVacancy(+vacancyId);
 
   return {
     title: `${title}`,
-  };
-}
-
-interface PageProps {
-  params: {
-    vacancyId: string;
   };
 }
 
@@ -42,7 +36,7 @@ export async function generateStaticParams() {
   return allVacanciesId;
 }
 
-const Page: React.FC<PageProps> = async ({ params }) => {
+const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
   const vacancy = await getVacancy(+vacancyId);
 

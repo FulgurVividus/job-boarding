@@ -12,19 +12,13 @@ import React from "react";
 export async function generateMetadata({
   params,
 }: {
-  params: { vacancyId: string };
+  params: Promise<{ vacancyId: string }>;
 }) {
   const { vacancyId } = await params;
   const { title } = await getCompanySpecificVacancy(+vacancyId);
 
   return {
     title: `${title}`,
-  };
-}
-
-interface PageProps {
-  params: {
-    vacancyId: string;
   };
 }
 
@@ -41,7 +35,7 @@ export async function generateStaticParams() {
   return allVacanciesIds;
 }
 
-const Page: React.FC<PageProps> = async ({ params }) => {
+const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
   const companyVacancy = await getCompanySpecificVacancy(+vacancyId);
   const {
