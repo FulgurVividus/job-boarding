@@ -24,15 +24,13 @@ type IUserImage = string | StaticImageData;
 
 export const revalidate = 1;
 
-const Page = async ({
-  searchParams,
-}: Promise<{
-  searchParams: {
-    query?: string | undefined;
-    page?: string | undefined;
-    per_page?: string | undefined;
-  };
-}>) => {
+type SearchParams = Promise<{
+  query?: string | undefined;
+  page?: string | undefined;
+  per_page?: string | undefined;
+}>;
+
+const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;

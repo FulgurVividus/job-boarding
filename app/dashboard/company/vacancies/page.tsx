@@ -23,17 +23,15 @@ export const metadata: Metadata = {
 
 type IUserImage = string | StaticImageData;
 
-interface SearchParams {
-  searchParams?: {
-    query?: string;
-    page?: string;
-    per_page?: string;
-  };
-}
+type SearchParams = Promise<{
+  query?: string;
+  page?: string;
+  per_page?: string;
+}>;
 
 export const revalidate = 1;
 
-const Page: React.FC<SearchParams> = async ({ searchParams }) => {
+const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
