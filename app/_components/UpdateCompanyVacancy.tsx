@@ -35,6 +35,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
   const router = useRouter();
 
   // update
+  // eslint-disable-next-line
   async function handleUpdate(e: any) {
     e.preventDefault();
 
