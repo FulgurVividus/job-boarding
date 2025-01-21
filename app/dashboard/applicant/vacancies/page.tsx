@@ -26,9 +26,13 @@ export const revalidate = 1;
 
 const Page = async ({
   searchParams,
-}: {
-  searchParams: { query?: string; page?: string; per_page?: string };
-}) => {
+}: Promise<{
+  searchParams: {
+    query?: string | undefined;
+    page?: string | undefined;
+    per_page?: string | undefined;
+  };
+}>) => {
   const session = await auth();
 
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
@@ -39,7 +43,7 @@ const Page = async ({
   const applicantUser = await getApplicantUser(user?.email);
   const userName: string = applicantUser?.fullName?.split(" ").at(0) || "User";
 
-  const searchParamsAwait = searchParams;
+  const searchParamsAwait = await searchParams;
   const query: string = searchParamsAwait?.query || "";
 
   // pagination
