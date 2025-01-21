@@ -1,4 +1,3 @@
-import { getAllVacancies } from "@/app/_lib/services";
 import React from "react";
 import ApplicantVacancyItem from "./ApplicantVacancyItem";
 

@@ -79,7 +79,7 @@ export async function createCompanyAction(formData: FormData) {
     user_id,
   };
 
-  const { data, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("companies")
     .insert([createCompanyFormData])
     .select()
@@ -116,7 +116,7 @@ export async function createApplicantAction(formData: FormData) {
     user_id,
   };
 
-  const { data, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("applicants")
     .insert([createApplicantFormData])
     .select()
@@ -156,7 +156,7 @@ export async function updateCompanyVacancyAction(formData: FormData) {
     emailContact,
   };
 
-  const { data, error } = await supabaseClient
+  const { error } = await supabaseClient
     .from("vacancies")
     .update(updateCompanyVacancyData)
     .eq("id", id);
