@@ -12,9 +12,9 @@ import React from "react";
 export async function generateMetadata({
   params,
 }: {
-  params: { vacancyId: string };
+  params: Promise<{ vacancyId: string }>;
 }) {
-  const { vacancyId } = params;
+  const { vacancyId } = await params;
   const { title } = await getCompanySpecificVacancy(+vacancyId);
 
   return {

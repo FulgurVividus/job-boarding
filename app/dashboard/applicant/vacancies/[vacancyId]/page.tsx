@@ -13,9 +13,9 @@ import ApplyForVacancy from "@/app/_components/ApplyForVacancy";
 export async function generateMetadata({
   params,
 }: {
-  params: { vacancyId: string };
+  params: Promise<{ vacancyId: string }>;
 }) {
-  const { vacancyId } = params;
+  const { vacancyId } = await params;
   const { title } = await getVacancy(+vacancyId);
 
   return {
