@@ -3,6 +3,7 @@ import {
   getApplicantUser,
   getUser,
   getVacancy,
+  getVacancyStatus,
 } from "@/app/_lib/services";
 import React from "react";
 import { auth } from "@/app/_lib/auth";
@@ -53,6 +54,9 @@ const Page: React.FC<PageProps> = async ({ params }) => {
   const applicantUser = await getApplicantUser(user?.email);
   const { id: applicantId } = applicantUser;
 
+  const data = await getVacancyStatus(vacancy.id, applicantId);
+  const status: string = data?.status ?? null;
+
   if (!role) {
     redirect("/role");
   }
@@ -75,7 +79,11 @@ const Page: React.FC<PageProps> = async ({ params }) => {
           <span className="text-gray-800 dark:text-gray-200">Vacancy Page</span>
         </h1>
 
-        <ApplyForVacancy vacancy={vacancy} applicantId={applicantId} />
+        <ApplyForVacancy
+          vacancy={vacancy}
+          applicantId={applicantId}
+          status={status}
+        />
       </main>
     </>
   );

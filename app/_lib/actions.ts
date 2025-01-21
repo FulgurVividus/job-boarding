@@ -166,7 +166,7 @@ export async function updateCompanyVacancyAction(formData: FormData) {
   }
 
   revalidatePath("/dashboard/company/vacancies", "layout");
-  redirect("/dashboard/company/vacancies");
+  // redirect("/dashboard/company/vacancies");
 }
 
 //# server action for deleting a COMPANY vacancy
@@ -199,7 +199,7 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
   }
 
   revalidatePath("/dashboard/company/vacancies", "layout");
-  redirect("/dashboard/company/vacancies");
+  // redirect("/dashboard/company/vacancies");
 }
 
 //# server action for publishing a COMPANY vacancy
@@ -241,7 +241,7 @@ export async function publishCompanyVacancyAction(formData: FormData) {
   }
 
   revalidatePath("/dashboard/company/vacancies", "layout");
-  redirect("/dashboard/company/vacancies");
+  // redirect("/dashboard/company/vacancies");
 }
 
 //# server action for applying for a vacancy
@@ -284,5 +284,5 @@ export async function applyForVacancyAction(formData: FormData) {
   }
 
   revalidatePath("/dashboard/applicant/vacancies", "layout");
-  redirect("/dashboard/applicant/vacancies");
+  // redirect("/dashboard/applicant/vacancies");
 }

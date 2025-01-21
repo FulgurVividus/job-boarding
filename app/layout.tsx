@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
 import Provider from "./Provider";
 import { RoleProvider } from "./_context/RoleContext";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +22,10 @@ function RootLayout({
     <html lang="en" className="bg-[#FFFAF0] h-full">
       <body>
         <RoleProvider>
-          <Provider>{children}</Provider>
+          <Provider>
+            <Toaster position="top-center" />
+            {children}
+          </Provider>
         </RoleProvider>
       </body>
     </html>

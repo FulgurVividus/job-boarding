@@ -12,6 +12,8 @@ import {
   updateCompanyVacancyAction,
   deleteCompanyVacancyAction,
 } from "@/app/_lib/actions";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface UpdateCompanyVacancyProps {
   id: number;
@@ -30,15 +32,36 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
   salary,
   emailContact,
 }) => {
+  const router = useRouter();
+
+  // update
   async function handleUpdate(e: any) {
     e.preventDefault();
-    const form = e.currentTarget.form!;
 
-    await updateCompanyVacancyAction(new FormData(form));
+    try {
+      const form = e.currentTarget.form!;
+      const res = await updateCompanyVacancyAction(new FormData(form));
+
+      toast.success(`Vacancy ${title}'s updated successfully`);
+      router.push("/dashboard/company/vacancies");
+      return res;
+    } catch (error) {
+      const errorHappen = error as Error;
+      toast.error(errorHappen.message);
+    }
   }
 
+  // delete
   async function handleDelete(id: number) {
-    await deleteCompanyVacancyAction(id);
+    try {
+      await deleteCompanyVacancyAction(id);
+
+      toast.success(`${title} was successfully deleted`);
+      router.push("/dashboard/company/vacancies");
+    } catch (error) {
+      const errorHappen = error as Error;
+      toast.error(errorHappen.message);
+    }
   }
 
   return (

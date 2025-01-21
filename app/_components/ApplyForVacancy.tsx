@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { applyForVacancyAction } from "@/app/_lib/actions";
 import {
@@ -7,8 +9,9 @@ import {
   AtSymbolIcon,
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
-import { getVacancyStatus } from "@/app/_lib/services";
 import { differenceInDays } from "date-fns";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ApplyForVacancyProps {
   vacancy: {
@@ -23,11 +26,13 @@ interface ApplyForVacancyProps {
   };
 
   applicantId: number;
+  status: string;
 }
 
-const ApplyForVacancy: React.FC<ApplyForVacancyProps> = async ({
+const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
   vacancy,
   applicantId,
+  status,
 }) => {
   const whenPublished = differenceInDays(
     new Date(),
@@ -44,14 +49,23 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = async ({
     whenPublishedText = `${whenPublished} days ago`;
   }
 
-  const data = await getVacancyStatus(vacancy.id, applicantId);
-  const status = data?.status ?? null;
+  const router = useRouter();
+
+  async function handleApply(formData: FormData) {
+    try {
+      const res = await applyForVacancyAction(formData);
+      toast.success(`You've successfully applied for ${vacancy.title}`);
+
+      router.push("/dashboard/applicant/vacancies");
+      return res;
+    } catch (error) {
+      const errorHappen = error as Error;
+      toast.error(errorHappen.message);
+    }
+  }
 
   return (
-    <form
-      action={applyForVacancyAction}
-      className="mt-10 flex flex-col justify-between"
-    >
+    <form action={handleApply} className="mt-10 flex flex-col justify-between">
       {/* inputs div */}
       <div className="flex flex-col gap-6 w-full max-w-lg">
         {/* Vacancy ID & Applicant ID */}
@@ -155,7 +169,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = async ({
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
-        {status === null && (
+        {(status === null || status === "" || !status) && (
           <button
             className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
             title="Apply for the vacancy"
@@ -173,13 +187,13 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = async ({
 
         {status === "rejected" && (
           <p className="text-red-600 bg-red-100 border border-red-300 rounded-lg px-4 py-2 text-sm md:text-base font-semibold tracking-wide shadow-sm">
-            You&apos;r rejected
+            You&apos;re rejected
           </p>
         )}
 
         {status === "accepted" && (
           <p className="text-green-600 bg-green-100 border border-green-300 rounded-lg px-4 py-2 text-sm md:text-base font-semibold tracking-wide shadow-sm">
-            You&apos;r accepted
+            You&apos;re accepted
           </p>
         )}
       </div>

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   BriefcaseIcon,
@@ -7,6 +9,8 @@ import {
   AcademicCapIcon,
 } from "@heroicons/react/24/solid";
 import { publishCompanyVacancyAction } from "@/app/_lib/actions";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface AddCompanyVacancyProps {
   companyUser:
@@ -23,9 +27,24 @@ interface AddCompanyVacancyProps {
 const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
   companyUser,
 }) => {
+  const router = useRouter();
+
+  async function handlePublishCompanyVacancy(formData: FormData) {
+    try {
+      const res = await publishCompanyVacancyAction(formData);
+      toast.success(`You've successfully published the vacancy`);
+
+      router.push("/dashboard/company/vacancies");
+      return res;
+    } catch (error) {
+      const errorHappen = error as Error;
+      toast.error(errorHappen.message);
+    }
+  }
+
   return (
     <form
-      action={publishCompanyVacancyAction}
+      action={handlePublishCompanyVacancy}
       className="mt-10 flex flex-col justify-between"
     >
       {/* inputs div */}
@@ -135,6 +154,7 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
         <button
           className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
           title="Publish the vacancy"
+          type="submit"
         >
           publish
         </button>
