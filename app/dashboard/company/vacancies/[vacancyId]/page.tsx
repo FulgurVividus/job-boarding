@@ -12,9 +12,9 @@ import React from "react";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ vacancyId: string }>;
+  params: { vacancyId: string };
 }) {
-  const { vacancyId } = await params;
+  const { vacancyId } = params;
   const { title } = await getCompanySpecificVacancy(+vacancyId);
 
   return {
@@ -28,9 +28,10 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const allVacancies = await getAllVacancies();
 
-  const allVacanciesIds = allVacancies?.map((vacancy) => ({
-    vacancyId: String(vacancy.id),
-  }));
+  const allVacanciesIds =
+    allVacancies?.map((vacancy) => ({
+      vacancyId: String(vacancy.id),
+    })) || [];
 
   return allVacanciesIds;
 }

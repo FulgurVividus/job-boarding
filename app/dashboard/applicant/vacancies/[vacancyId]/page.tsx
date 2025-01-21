@@ -13,9 +13,9 @@ import ApplyForVacancy from "@/app/_components/ApplyForVacancy";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ vacancyId: string }>;
+  params: { vacancyId: string };
 }) {
-  const { vacancyId } = await params;
+  const { vacancyId } = params;
   const { title } = await getVacancy(+vacancyId);
 
   return {
@@ -29,9 +29,10 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const allVacancies = await getAllVacancies();
 
-  const allVacanciesId = allVacancies?.map((vacancy) => ({
-    vacancyId: String(vacancy.id),
-  }));
+  const allVacanciesId =
+    allVacancies?.map((vacancy) => ({
+      vacancyId: String(vacancy.id),
+    })) || [];
 
   return allVacanciesId;
 }
