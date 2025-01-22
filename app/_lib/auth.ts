@@ -10,21 +10,12 @@ const authConfig = {
     }),
   ],
   callbacks: {
-    authorized({
-      auth,
-    }: {
-      auth: {
-        user: { name: string; email: string; image: string; userId: number };
-        expires?: string;
-      };
-    }): boolean {
+    // eslint-disable-next-line
+    authorized({ auth }: { auth: any }) {
       return !!auth?.user;
     },
-    async signIn({
-      user,
-    }: {
-      user: { name: string; email: string; image: string };
-    }) {
+    // eslint-disable-next-line
+    async signIn({ user }: { user: any }) {
       try {
         const existingUser = await getUser(user.email);
 
@@ -38,20 +29,8 @@ const authConfig = {
         return false;
       }
     },
-    async session({
-      session,
-    }: {
-      session: {
-        user: {
-          name: string;
-          email: string;
-          image: string;
-          userId?: number;
-          role?: string;
-        };
-        expires?: string;
-      };
-    }) {
+    // eslint-disable-next-line
+    async session({ session }: { session: any }) {
       const userUser = await getUser(session.user.email);
       session.user.userId = userUser.id; // saving the id in the session
       session.user.role = userUser.role; // saving the role in the session
