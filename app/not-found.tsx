@@ -1,6 +1,12 @@
 import React from "react";
 import { auth } from "./_lib/auth";
 import LinkButton from "./_components/LinkButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "404",
+  description: "Page is not found",
+};
 
 const NotFound: React.FC = async () => {
   const session = await auth();
