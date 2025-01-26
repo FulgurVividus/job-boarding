@@ -50,6 +50,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
                         alt="Card image"
                         className="object-cover rounded-xl select-none"
                         priority={true}
+                        placeholder="blur"
                         src={defaultImg}
                         width={270}
                       />
@@ -80,6 +81,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
                         alt="Card image"
                         className="object-cover rounded-xl select-none"
                         priority={true}
+                        placeholder="blur"
                         src={defaultImg}
                         width={270}
                       />

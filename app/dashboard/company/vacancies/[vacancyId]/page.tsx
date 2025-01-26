@@ -6,7 +6,7 @@ import {
   getCompanyUser,
   getUser,
 } from "@/app/_lib/services";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import React from "react";
 
 export async function generateMetadata({
@@ -39,6 +39,9 @@ export async function generateStaticParams() {
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
   const companyVacancy = await getCompanySpecificVacancy(+vacancyId);
+
+  if (!companyVacancy) return notFound();
+
   const {
     // created_at,
     // company_id,

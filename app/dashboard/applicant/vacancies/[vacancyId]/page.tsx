@@ -7,7 +7,7 @@ import {
 } from "@/app/_lib/services";
 import React from "react";
 import { auth } from "@/app/_lib/auth";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ApplyForVacancy from "@/app/_components/ApplyForVacancy";
 
 export async function generateMetadata({
@@ -40,6 +40,8 @@ export async function generateStaticParams() {
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
   const vacancy = await getVacancy(+vacancyId);
+
+  if (!vacancy) return notFound();
 
   const session = await auth();
 

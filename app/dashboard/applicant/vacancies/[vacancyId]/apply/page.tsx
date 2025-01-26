@@ -1,3 +1,5 @@
+// TODO: delete this page
+
 import { auth } from "@/app/_lib/auth";
 import { getApplicantUser, getUser, getVacancy } from "@/app/_lib/services";
 import { redirect } from "next/navigation";
