@@ -138,7 +138,7 @@ export async function getCompanyUser(email: string) {
     throw new Error(`Error in getting company user: ${error}`);
   }
 
-  return companyUser;
+  return companyUser ?? null;
 }
 
 // get applicant user
@@ -154,7 +154,7 @@ export async function getApplicantUser(email: string) {
     throw new Error(`Error in getting applicant user: ${error}`);
   }
 
-  return applicantUser;
+  return applicantUser ?? null;
 }
 
 // get vacancy status

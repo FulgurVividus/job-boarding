@@ -25,8 +25,8 @@ const Page: React.FC = async () => {
   const fullName: string | undefined = user?.fullName;
   const role: string | undefined = user?.role;
 
-  const applicantUser = (await getApplicantUser(user?.email)) ?? null;
-  const companyUser = (await getCompanyUser(user?.email)) ?? null;
+  const applicantUser = await getApplicantUser(user?.email);
+  const companyUser = await getCompanyUser(user?.email);
 
   const createForm: CreateFormI = { fullName, role };
 
