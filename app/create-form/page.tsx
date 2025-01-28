@@ -25,8 +25,8 @@ const Page: React.FC = async () => {
   const fullName: string | undefined = user?.fullName;
   const role: string | undefined = user?.role;
 
-  const applicantUser = await getApplicantUser(user?.email);
-  const companyUser = await getCompanyUser(user?.email);
+  const applicantUser = (await getApplicantUser(user?.email)) ?? null;
+  const companyUser = (await getCompanyUser(user?.email)) ?? null;
 
   const createForm: CreateFormI = { fullName, role };
 
@@ -36,7 +36,7 @@ const Page: React.FC = async () => {
 
   return (
     <>
-      {!applicantUser && !companyUser ? (
+      {applicantUser === null && companyUser === null ? (
         <section>
           {user?.role === "company" ? (
             <CompanyForm user={user} />
