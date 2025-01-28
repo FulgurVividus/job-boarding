@@ -17,6 +17,7 @@ export async function getAllVacancies() {
 
   if (error) {
     console.log(`Error in getting all vacancies: ${error}`);
+    throw new Error(`Error in getting all vacancies: ${error}`);
   }
 
   return vacancies;
@@ -32,6 +33,7 @@ export async function getVacancy(id: number) {
 
   if (error) {
     console.log(`Error in getting specific vacancy: ${error}`);
+    throw new Error(`Error in getting specific vacancy: ${error}`);
   }
 
   return vacancy;
@@ -46,6 +48,7 @@ export async function getCompanyAllVacancies(id: number) {
 
   if (error) {
     console.log(`Error in getting all company's vacancies: ${error}`);
+    throw new Error(`Error in getting all company's vacancies: ${error}`);
   }
 
   return vacancies;
@@ -61,6 +64,7 @@ export async function getCompanySpecificVacancy(id: number) {
 
   if (error) {
     console.log(`Error in getting company's vacancy: ${error}`);
+    throw new Error(`Error in getting company's vacancy: ${error}`);
   }
 
   return companyVacancy;
@@ -76,6 +80,7 @@ export async function getCompanyInfo(id: number) {
 
   if (error) {
     console.log(`Error in getting company's info: ${error}`);
+    throw new Error(`Error in getting company's info: ${error}`);
   }
 
   return companyInfo;
@@ -130,6 +135,7 @@ export async function getCompanyUser(email: string) {
 
   if (error) {
     console.log(`Error in getting company user: ${error}`);
+    throw new Error(`Error in getting company user: ${error}`);
   }
 
   return companyUser;
@@ -145,6 +151,7 @@ export async function getApplicantUser(email: string) {
 
   if (error) {
     console.log(`Error in getting applicant user: ${error}`);
+    throw new Error(`Error in getting applicant user: ${error}`);
   }
 
   return applicantUser;
@@ -164,6 +171,7 @@ export async function getVacancyStatus(
 
   if (error) {
     console.log(`Error in getting vacancy status: ${error}`);
+    throw new Error(`Error in getting vacancy status: ${error}`);
   }
 
   return data;
