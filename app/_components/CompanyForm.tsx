@@ -95,6 +95,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <button
               className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
               title="Create company form"
+              type="submit"
             >
               create
             </button>
