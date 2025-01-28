@@ -138,7 +138,8 @@ export async function getCompanyUser(email: string) {
     .from("companies")
     .select("*")
     .eq("contactEmail", email)
-    .maybeSingle();
+    .limit(1)
+    .single();
 
   if (error) {
     console.log(`Error in getting company user:`, error);
@@ -159,7 +160,8 @@ export async function getApplicantUser(email: string) {
     .from("applicants")
     .select("*")
     .eq("email", email)
-    .maybeSingle();
+    .limit(1)
+    .single();
 
   if (error) {
     console.log(`Error in getting applicant user:`, error);
