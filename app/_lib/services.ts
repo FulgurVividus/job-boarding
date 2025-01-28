@@ -16,8 +16,8 @@ export async function getAllVacancies() {
     .select("*");
 
   if (error) {
-    console.log(`Error in getting all vacancies: ${error}`);
-    throw new Error(`Error in getting all vacancies: ${error}`);
+    console.log(`Error in getting all vacancies:`, error);
+    throw new Error(`Error in getting all vacancies: ${error.message}`);
   }
 
   return vacancies;
@@ -32,8 +32,8 @@ export async function getVacancy(id: number) {
     .single();
 
   if (error) {
-    console.log(`Error in getting specific vacancy: ${error}`);
-    throw new Error(`Error in getting specific vacancy: ${error}`);
+    console.log(`Error in getting specific vacancy:`, error);
+    throw new Error(`Error in getting specific vacancy: ${error.message}`);
   }
 
   return vacancy;
@@ -47,8 +47,10 @@ export async function getCompanyAllVacancies(id: number) {
     .eq("company_id", id);
 
   if (error) {
-    console.log(`Error in getting all company's vacancies: ${error}`);
-    throw new Error(`Error in getting all company's vacancies: ${error}`);
+    console.log(`Error in getting all company's vacancies:`, error);
+    throw new Error(
+      `Error in getting all company's vacancies: ${error.message}`
+    );
   }
 
   return vacancies;
@@ -63,8 +65,8 @@ export async function getCompanySpecificVacancy(id: number) {
     .single();
 
   if (error) {
-    console.log(`Error in getting company's vacancy: ${error}`);
-    throw new Error(`Error in getting company's vacancy: ${error}`);
+    console.log(`Error in getting company's vacancy:`, error);
+    throw new Error(`Error in getting company's vacancy: ${error.message}`);
   }
 
   return companyVacancy;
@@ -79,8 +81,8 @@ export async function getCompanyInfo(id: number) {
     .single();
 
   if (error) {
-    console.log(`Error in getting company's info: ${error}`);
-    throw new Error(`Error in getting company's info: ${error}`);
+    console.log(`Error in getting company's info:`, error);
+    throw new Error(`Error in getting company's info: ${error.message}`);
   }
 
   return companyInfo;
@@ -102,8 +104,8 @@ export async function createUser(newUser: User) {
   const { data, error } = await supabaseClient.from("users").insert([newUser]);
 
   if (error) {
-    console.log(`Error in creating user: ${error}`);
-    throw new Error(`A new user cannot be created`);
+    console.log(`Error in creating user:`, error);
+    throw new Error(`A new user cannot be created: ${error.message}`);
   }
 
   return data;
@@ -118,8 +120,8 @@ export async function storeRole(role: string, userId: number) {
     .select();
 
   if (error) {
-    console.log(`Error in storing user's role: ${error}`);
-    throw new Error(`The role cannot be inserted`);
+    console.log(`Error in storing user's role:`, error);
+    throw new Error(`The role cannot be inserted: ${error.message}`);
   }
 
   return data;
@@ -127,6 +129,11 @@ export async function storeRole(role: string, userId: number) {
 
 // get company user
 export async function getCompanyUser(email: string) {
+  if (!email) {
+    console.log(`Email is required to get company user`);
+    throw new Error(`Email is required to get company user`);
+  }
+
   const { data: companyUser, error } = await supabaseClient
     .from("companies")
     .select("*")
@@ -134,8 +141,8 @@ export async function getCompanyUser(email: string) {
     .single();
 
   if (error) {
-    console.log(`Error in getting company user: ${error}`);
-    throw new Error(`Error in getting company user: ${error}`);
+    console.log(`Error in getting company user:`, error);
+    throw new Error(`Error in getting company user: ${error.message}`);
   }
 
   return companyUser ?? null;
@@ -143,6 +150,11 @@ export async function getCompanyUser(email: string) {
 
 // get applicant user
 export async function getApplicantUser(email: string) {
+  if (!email) {
+    console.log(`Email is required to get applicant user`);
+    throw new Error(`Email is required to get applicant user`);
+  }
+
   const { data: applicantUser, error } = await supabaseClient
     .from("applicants")
     .select("*")
@@ -150,8 +162,8 @@ export async function getApplicantUser(email: string) {
     .single();
 
   if (error) {
-    console.log(`Error in getting applicant user: ${error}`);
-    throw new Error(`Error in getting applicant user: ${error}`);
+    console.log(`Error in getting applicant user:`, error);
+    throw new Error(`Error in getting applicant user: ${error.message}`);
   }
 
   return applicantUser ?? null;
@@ -170,8 +182,8 @@ export async function getVacancyStatus(
     .single();
 
   if (error) {
-    console.log(`Error in getting vacancy status: ${error}`);
-    throw new Error(`Error in getting vacancy status: ${error}`);
+    console.log(`Error in getting vacancy status:`, error);
+    throw new Error(`Error in getting vacancy status: ${error.message}`);
   }
 
   return data;
