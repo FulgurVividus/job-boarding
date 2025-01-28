@@ -26,7 +26,7 @@ interface ApplyForVacancyProps {
   };
 
   applicantId: number;
-  status: string;
+  status: string | null;
 }
 
 const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({

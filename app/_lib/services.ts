@@ -174,17 +174,22 @@ export async function getVacancyStatus(
   vacancy_id: number,
   applicant_id: number
 ) {
+  if (!vacancy_id || !applicant_id) {
+    console.log(`Vacancy ID or Applicant ID is required`);
+    throw new Error(`Vacancy ID or Applicant ID is required`);
+  }
+
   const { data, error } = await supabaseClient
     .from("applications")
     .select("*")
     .eq("vacancy_id", vacancy_id)
     .eq("applicant_id", applicant_id)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.log(`Error in getting vacancy status:`, error);
     throw new Error(`Error in getting vacancy status: ${error.message}`);
   }
 
-  return data;
+  return data ?? null;
 }

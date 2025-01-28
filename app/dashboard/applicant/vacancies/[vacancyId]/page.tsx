@@ -52,7 +52,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { id: applicantId } = applicantUser;
 
   const data = await getVacancyStatus(vacancy.id, applicantId);
-  const status: string = data?.status ?? null;
+  const status: string | null = data?.status;
 
   if (!role) {
     redirect("/role");
