@@ -195,3 +195,25 @@ export async function getVacancyStatus(
 
   return data ?? null;
 }
+
+// get all applied applicants
+export async function getAllAppliedApplicants(vacancy_id: number) {
+  if (!vacancy_id) {
+    console.log(`Vacancy ID is required`);
+    throw new Error(`Vacancy ID is required`);
+  }
+
+  const { data, error } = await supabaseClient
+    .from("applications")
+    .select("*, applicants(*)")
+    .eq("vacancy_id", vacancy_id);
+
+  if (error) {
+    console.log(`Error in getting all applied applicants:`, error);
+    throw new Error(
+      `Error in getting all applied applicants: ${error.message}`
+    );
+  }
+
+  return data ?? null;
+}

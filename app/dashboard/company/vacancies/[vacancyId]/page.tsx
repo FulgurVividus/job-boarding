@@ -1,13 +1,14 @@
+import ApplicantsTable from "@/app/_components/ApplicantsTable";
 import UpdateCompanyVacancy from "@/app/_components/UpdateCompanyVacancy";
 import { auth } from "@/app/_lib/auth";
 import {
+  getAllAppliedApplicants,
   getAllVacancies,
   getCompanySpecificVacancy,
   getCompanyUser,
   getUser,
 } from "@/app/_lib/services";
 import { notFound, redirect } from "next/navigation";
-import React from "react";
 
 export async function generateMetadata({
   params,
@@ -59,6 +60,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const role: string | undefined = user?.role;
 
   const companyUser = await getCompanyUser(user?.email);
+  const allAppliedApplicants = await getAllAppliedApplicants(id);
 
   if (!role) {
     redirect("/role");
@@ -73,7 +75,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   }
 
   return (
-    <main className="px-10 py-5 md:px-20 md:py-10 flex flex-col justify-between items-center max-h-full">
+    <main className="px-10 py-5 md:px-20 md:py-10 flex flex-col justify-between items-center max-h-full space-y-10">
       <h1 className="text-center mb-10 text-3xl md:text-6xl font-extrabold tracking-tight">
         <span className="text-mainSalmon drop-shadow-lg">{title}</span>{" "}
         <span className="text-gray-800 dark:text-gray-200">Vacancy Page</span>
@@ -87,6 +89,10 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
         salary={salary}
         emailContact={emailContact}
       />
+
+      <div className="w-full max-w-full overflow-hidden">
+        <ApplicantsTable allAppliedApplicants={allAppliedApplicants} />
+      </div>
     </main>
   );
 };
