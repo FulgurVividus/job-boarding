@@ -286,3 +286,73 @@ export async function applyForVacancyAction(formData: FormData) {
   revalidatePath("/dashboard/applicant/vacancies", "layout");
   // redirect("/dashboard/applicant/vacancies");
 }
+
+//# server action for rejecting an applicant
+export async function rejectApplicantAction(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const user = await getUser(session?.user?.email);
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
+  }
+
+  const applicant_id: number = Number(formData.get("applicant_id") as string);
+  const vacancy_id: number = Number(formData.get("vacancy_id") as string);
+
+  const { error } = await supabaseClient
+    .from("applications")
+    .update({ status: "rejected" })
+    .eq("applicant_id", applicant_id)
+    .eq("vacancy_id", vacancy_id);
+
+  if (error) {
+    throw new Error(`Could not reject an applicant: ${error}`);
+  }
+
+  revalidatePath(`/dashboard/company/vacancies/${vacancy_id}`, "page");
+}
+
+//# server action for accepting an applicant
+export async function acceptApplicantAction(formData: FormData) {
+  const session = await auth();
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+
+  const user = await getUser(session?.user?.email);
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
+  }
+
+  const applicant_id: number = Number(formData.get("applicant_id") as string);
+  const vacancy_id: number = Number(formData.get("vacancy_id") as string);
+
+  const { error } = await supabaseClient
+    .from("applications")
+    .update({ status: "accepted" })
+    .eq("applicant_id", applicant_id)
+    .eq("vacancy_id", vacancy_id);
+
+  if (error) {
+    throw new Error(`Could not accept an applicant: ${error}`);
+  }
+
+  revalidatePath(`/dashboard/company/vacancies/${vacancy_id}`, "page");
+}
