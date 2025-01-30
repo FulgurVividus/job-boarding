@@ -19,6 +19,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
   Mail,
+  RefreshCcw,
   Search,
   User,
 } from "lucide-react";
@@ -52,6 +53,7 @@ interface Applicants {
   birthYear: number;
   created_at: string;
   yearsOfExperience: string;
+  status?: string;
 }
 
 const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
@@ -60,7 +62,10 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
   const columnHelper = createColumnHelper<Applicants>();
 
   const applicants: Applicants[] =
-    allAppliedApplicants?.map((applicant) => applicant.applicants) ?? [];
+    allAppliedApplicants?.map((applicant) => ({
+      ...applicant.applicants,
+      status: applicant.status,
+    })) ?? [];
 
   const columns = [
     // id
@@ -118,6 +123,19 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
         </span>
       ),
     }),
+
+    // status
+    columnHelper.accessor("status", {
+      id: "status",
+      cell: (info) => info.getValue(),
+      header: () => (
+        <span className="flex items-center">
+          <RefreshCcw className="mr-2 flex-shrink-0" size={16} /> Status
+        </span>
+      ),
+    }),
+
+    // actions
   ];
 
   const [data] = useState([...applicants]);
