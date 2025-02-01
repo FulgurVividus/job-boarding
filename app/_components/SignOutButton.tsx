@@ -9,6 +9,7 @@ const SignOutButton: React.FC = () => {
         className="flex items-center justify-center py-1 px-2"
         onClick={signOutAction}
         title="Sign out"
+        type="button"
       >
         <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
         <span

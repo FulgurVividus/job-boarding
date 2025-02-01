@@ -391,6 +391,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   onClick={() => table.setPageIndex(0)}
                   disabled={!table.getCanPreviousPage()}
                   title="Go to 1st page"
+                  type="button"
                 >
                   <ChevronsLeft size={20} />
                 </button>
@@ -401,6 +402,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
                   title="Go to previous page"
+                  type="button"
                 >
                   <ChevronLeft size={20} />
                 </button>
@@ -429,6 +431,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
                   title="Go to next page"
+                  type="button"
                 >
                   <ChevronsRight size={20} />
                 </button>
@@ -439,6 +442,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                   disabled={!table.getCanNextPage()}
                   title="Go to last page"
+                  type="button"
                 >
                   <ChevronRight size={20} />
                 </button>

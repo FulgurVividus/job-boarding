@@ -34,6 +34,7 @@ const PaginationApplicant: React.FC<PaginationApplicantProps> = ({
           <button
             disabled={!hasPrevPage}
             title="Previous page"
+            type="button"
             onClick={() => {
               router.push(
                 `${pathname}?page=${Number(page) - 1}&per_page=${per_page}`
@@ -60,6 +61,7 @@ const PaginationApplicant: React.FC<PaginationApplicantProps> = ({
           <button
             disabled={!hasNextPage}
             title="Next page"
+            type="button"
             onClick={() => {
               router.push(
                 `${pathname}?page=${Number(page) + 1}&per_page=${per_page}`
