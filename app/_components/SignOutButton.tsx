@@ -4,15 +4,15 @@ import { signOutAction } from "@/app/_lib/actions";
 
 const SignOutButton: React.FC = () => {
   return (
-    <div className="group">
+    <div className="sign-out-button">
       <button
-        className="flex items-center justify-center group-hover:bg-gray-400 group-hover:rounded-md group-hover:text-white group-transition-all duration-200 py-1 px-2"
+        className="flex items-center justify-center py-1 px-2"
         onClick={signOutAction}
         title="Sign out"
       >
         <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
         <span
-          className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-tex group-hover:text-white duration-200"
+          className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-tex"
           style={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "0.02em",

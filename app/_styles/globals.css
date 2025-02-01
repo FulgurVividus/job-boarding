@@ -57,6 +57,42 @@ body {
     }
   }
 
+  /*  */
+
+  .link-button {
+    @apply px-6 py-2 md:px-10 md:py-3 bg-mainBlue bg-gradient-to-r from-mainSalmon to-mainBlue transition-all duration-300 font-semibold text-mainWhite rounded-3xl text-center uppercase shadow-lg text-sm md:text-lg;
+  }
+
+  @media (hover: hover) {
+    .link-button:hover {
+      @apply hover:scale-95 hover:text-mainBlack hover:shadow-xl;
+    }
+  }
+  @media (hover: none) {
+    .link-button:active {
+      @apply scale-95 text-mainBlack shadow-xl;
+    }
+  }
+
+  /*  */
+
+  .sign-out-button {
+    @apply transition-all duration-200 rounded;
+  }
+
+  @media (hover: hover) {
+    .sign-out-button:hover {
+      @apply hover:bg-black/20;
+    }
+  }
+  @media (hover: none) {
+    .sign-out-button:active {
+      @apply bg-black/20;
+    }
+  }
+
+  /*  */
+
   .spinner {
     width: 40px;
     height: 40px;
