@@ -6,7 +6,7 @@ import { supabaseClient } from "./supabase";
 import { redirect } from "next/navigation";
 import { getCompanyAllVacancies, getCompanyUser, getUser } from "./services";
 
-interface createCompanyFormDataI {
+interface CreateCompanyFormDataI {
   companyName: string;
   location: string;
   contactEmail: string;
@@ -14,7 +14,7 @@ interface createCompanyFormDataI {
   user_id: number;
 }
 
-interface createApplicantFormDataI {
+interface CreateApplicantFormDataI {
   fullName: string;
   email: string;
   yearsOfExperience: string;
@@ -22,7 +22,7 @@ interface createApplicantFormDataI {
   user_id: number;
 }
 
-interface updateCompanyVacancyDataI {
+interface UpdateCompanyVacancyDataI {
   title: string;
   vacancyLocation: string;
   experienceRequired: string;
@@ -30,7 +30,7 @@ interface updateCompanyVacancyDataI {
   emailContact: string;
 }
 
-interface publishCompanyVacancyDataI {
+interface PublishCompanyVacancyDataI {
   company_id: number;
   title: string;
   vacancyLocation: string;
@@ -39,7 +39,7 @@ interface publishCompanyVacancyDataI {
   emailContact: string;
 }
 
-interface applyForVacancyDataI {
+interface ApplyForVacancyDataI {
   vacancy_id: number;
   applicant_id: number;
   status: string;
@@ -71,7 +71,7 @@ export async function createCompanyAction(formData: FormData) {
     throw new Error(`Invalid contact number`);
   }
 
-  const createCompanyFormData: createCompanyFormDataI = {
+  const createCompanyFormData: CreateCompanyFormDataI = {
     companyName,
     location,
     contactEmail,
@@ -108,7 +108,7 @@ export async function createApplicantAction(formData: FormData) {
   const birthYear = Number(formData.get("birthYear")?.slice(0, 90) as string);
   const user_id = session?.user?.userId as number;
 
-  const createApplicantFormData: createApplicantFormDataI = {
+  const createApplicantFormData: CreateApplicantFormDataI = {
     fullName,
     email,
     yearsOfExperience,
@@ -148,7 +148,7 @@ export async function updateCompanyVacancyAction(formData: FormData) {
   const salary = formData.get("salary")?.slice(0, 100) as string;
   const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
 
-  const updateCompanyVacancyData: updateCompanyVacancyDataI = {
+  const updateCompanyVacancyData: UpdateCompanyVacancyDataI = {
     title,
     vacancyLocation,
     experienceRequired,
@@ -221,7 +221,7 @@ export async function publishCompanyVacancyAction(formData: FormData) {
   const salary = formData.get("salary")?.slice(0, 100) as string;
   const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
 
-  const publishCompanyVacancyData: publishCompanyVacancyDataI = {
+  const publishCompanyVacancyData: PublishCompanyVacancyDataI = {
     company_id,
     title,
     vacancyLocation,
@@ -267,7 +267,7 @@ export async function applyForVacancyAction(formData: FormData) {
   const applicant_id = Number(formData.get("applicant_id") as string);
   const status: string = "applied";
 
-  const applyForVacancyData: applyForVacancyDataI = {
+  const applyForVacancyData: ApplyForVacancyDataI = {
     vacancy_id,
     applicant_id,
     status,
