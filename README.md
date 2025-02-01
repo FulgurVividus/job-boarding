@@ -27,6 +27,7 @@
 - **Database**: Supabase for backend and PostgreSQL as the database.
 - **Optimized Performance**: Server-side rendering (SSR), static generation (SSG) and incremental static regeneration (ISR) with Next.js.
 - **Toast Notifications**: Beautiful notifications and alerts using React-hot-toast.
+- **RBAC**: Role-based access control for user management.
 
 ---
 
