@@ -40,10 +40,18 @@ body {
 
 @layer components {
   .common-button {
-    @apply px-10 py-2 mt-2 bg-mainBlue bg-gradient-to-r from-mainSalmon to-mainBlue transition-all duration-300 hover:scale-95 font-semibold text-mainWhite hover:text-mainBlack rounded-3xl text-center tracking-wide uppercase shadow-md hover:shadow-lg text-lg md:text-xl;
+    @apply px-10 py-2 mt-2 bg-mainBlue bg-gradient-to-r from-mainSalmon to-mainBlue transition-all duration-300 font-semibold text-mainWhite rounded-3xl text-center tracking-wide uppercase shadow-md text-lg md:text-xl;
     font-family: "Poppins", sans-serif;
     letter-spacing: 0.1em;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+
+    @apply hover:scale-95 hover:text-mainBlack hover:shadow-lg;
+  }
+
+  @media (hover: none) {
+    .common-button:active {
+      @apply scale-95 text-mainBlack shadow-lg;
+    }
   }
 
   .spinner {
