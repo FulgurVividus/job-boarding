@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useTransition } from "react";
 import { applyForVacancyAction } from "@/app/_lib/actions";
 import {
   CalendarDaysIcon,
@@ -12,6 +12,7 @@ import {
 import { differenceInDays } from "date-fns";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import SpinnerMini from "./SpinnerMini";
 
 interface ApplyForVacancyProps {
   vacancy: {
@@ -34,6 +35,8 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
   applicantId,
   status,
 }) => {
+  const [isPending, startTransition] = useTransition();
+
   const whenPublished = differenceInDays(
     new Date(),
     new Date(vacancy.created_at)
@@ -53,14 +56,20 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
 
   async function handleApply(formData: FormData) {
     try {
-      const res = await applyForVacancyAction(formData);
-      toast.success(`You've successfully applied for ${vacancy.title}`);
-
-      router.push("/dashboard/applicant/vacancies");
-      return res;
+      startTransition(() =>
+        applyForVacancyAction(formData)
+          .then(() => {
+            toast.success(`You've successfully applied for ${vacancy.title}`);
+            router.push("/dashboard/applicant/vacancies");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
+      );
     } catch (error) {
       const errorHappen = error as Error;
       toast.error(errorHappen.message);
+      console.log(errorHappen.message);
     }
   }
 
@@ -171,11 +180,18 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
       <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
         {(status === null || status === "" || !status) && (
           <button
-            className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+            className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow-0 justify-center w-2/5"
             title="Apply for the vacancy"
             type="submit"
+            disabled={isPending}
           >
-            Apply
+            {!isPending ? (
+              <span>Apply</span>
+            ) : (
+              <span className="mx-auto">
+                <SpinnerMini />
+              </span>
+            )}
           </button>
         )}
 

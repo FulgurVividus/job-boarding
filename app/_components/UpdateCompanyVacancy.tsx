@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useTransition } from "react";
 import {
   BriefcaseIcon,
   MapPinIcon,
@@ -14,6 +14,7 @@ import {
 } from "@/app/_lib/actions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import SpinnerMini from "./SpinnerMini";
 
 interface UpdateCompanyVacancyProps {
   id: number;
@@ -33,32 +34,45 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
   emailContact,
 }) => {
   const router = useRouter();
+  const [isUpdating, startUpdateTransition] = useTransition();
+  const [isDeleting, startDeleteTransition] = useTransition();
 
   // update
-  // eslint-disable-next-line
-  async function handleUpdate(e: any) {
+  async function handleUpdate(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
 
     try {
       const form = e.currentTarget.form!;
-      const res = await updateCompanyVacancyAction(new FormData(form));
-
-      toast.success(`Vacancy ${title}'s updated successfully`);
-      router.push("/dashboard/company/vacancies");
-      return res;
+      startUpdateTransition(() =>
+        updateCompanyVacancyAction(new FormData(form))
+          .then(() => {
+            toast.success(`Vacancy ${title}'s updated successfully`);
+            router.push("/dashboard/company/vacancies");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
+      );
     } catch (error) {
       const errorHappen = error as Error;
       toast.error(errorHappen.message);
+      console.log(errorHappen.message);
     }
   }
 
   // delete
   async function handleDelete(id: number) {
     try {
-      await deleteCompanyVacancyAction(id);
-
-      toast.success(`${title} was successfully deleted`);
-      router.push("/dashboard/company/vacancies");
+      startDeleteTransition(() =>
+        deleteCompanyVacancyAction(id)
+          .then(() => {
+            toast.success(`${title} was successfully deleted`);
+            router.push("/dashboard/company/vacancies");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
+      );
     } catch (error) {
       const errorHappen = error as Error;
       toast.error(errorHappen.message);
@@ -165,21 +179,35 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
 
       <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
         <button
-          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow justify-center w-1/2"
           title="Update the vacancy"
           type="submit"
           onClick={handleUpdate}
+          disabled={isUpdating}
         >
-          Update
+          {!isUpdating ? (
+            <span>Update</span>
+          ) : (
+            <span className="mx-auto">
+              <SpinnerMini />
+            </span>
+          )}
         </button>
 
         <button
-          className="uppercase bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-red-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          className="uppercase bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-red-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow justify-center w-1/2"
           title="Delete the vacancy"
           type="button"
           onClick={() => handleDelete(id)}
+          disabled={isDeleting}
         >
-          Delete
+          {!isDeleting ? (
+            <span>Delete</span>
+          ) : (
+            <span className="mx-auto">
+              <SpinnerMini />
+            </span>
+          )}
         </button>
       </div>
     </form>

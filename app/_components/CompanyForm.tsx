@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { createCompanyAction } from "@/app/_lib/actions";
+import { useFormStatus } from "react-dom";
 
 interface CompanyFormProps {
   user:
@@ -92,13 +95,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
           </div>
 
           <div className="flex items-center justify-start mt-10">
-            <button
-              className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
-              title="Create company form"
-              type="submit"
-            >
-              create
-            </button>
+            <CreateButton />
           </div>
         </form>
       </section>
@@ -107,3 +104,18 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
 };
 
 export default CompanyForm;
+
+const CreateButton: React.FC = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow-0 justify-center w-2/5"
+      title="Create company form"
+      type="submit"
+      disabled={pending}
+    >
+      {pending ? "creating..." : "create"}
+    </button>
+  );
+};

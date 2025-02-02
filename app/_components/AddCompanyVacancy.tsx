@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useTransition } from "react";
 import {
   BriefcaseIcon,
   MapPinIcon,
@@ -11,6 +11,7 @@ import {
 import { publishCompanyVacancyAction } from "@/app/_lib/actions";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import SpinnerMini from "./SpinnerMini";
 
 interface AddCompanyVacancyProps {
   companyUser:
@@ -28,17 +29,24 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
   companyUser,
 }) => {
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   async function handlePublishCompanyVacancy(formData: FormData) {
     try {
-      const res = await publishCompanyVacancyAction(formData);
-      toast.success(`You've successfully published the vacancy`);
-
-      router.push("/dashboard/company/vacancies");
-      return res;
+      startTransition(() =>
+        publishCompanyVacancyAction(formData)
+          .then(() => {
+            toast.success(`You've successfully published the vacancy`);
+            router.push("/dashboard/company/vacancies");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
+      );
     } catch (error) {
       const errorHappen = error as Error;
       toast.error(errorHappen.message);
+      console.log(errorHappen.message);
     }
   }
 
@@ -152,11 +160,18 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
 
       <div className="flex items-center justify-start mt-10">
         <button
-          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide"
+          className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow-0 justify-center w-2/5"
           title="Publish the vacancy"
           type="submit"
+          disabled={isPending}
         >
-          publish
+          {!isPending ? (
+            <span>publish</span>
+          ) : (
+            <span className="mx-auto">
+              <SpinnerMini />
+            </span>
+          )}
         </button>
       </div>
     </form>
