@@ -34,28 +34,15 @@ export const revalidate = 1;
 const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
   const session = await auth();
 
-  const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
+  if (!session?.user?.email) {
+    redirect("/login");
+  }
 
-  const user = await getUser(session?.user?.email || "");
+  const [user, searchParamsAwait] = await Promise.all([
+    getUser(session?.user?.email || ""),
+    searchParams,
+  ]);
   const role: string | undefined = user?.role;
-
-  const companyUser = await getCompanyUser(user?.email);
-  const userName: string = companyUser?.companyName?.split(" ").at(0) || "User";
-
-  const searchParamsAwait = await searchParams;
-  const query: string = searchParamsAwait?.query || "";
-
-  // pagination
-
-  const page = searchParamsAwait?.page ?? 1;
-  const per_page = searchParamsAwait?.per_page ?? 8;
-  const companyAllVacancies = await getCompanyAllVacancies(companyUser?.id);
-
-  const start: number = (Number(page) - 1) * Number(per_page);
-  const end: number = start + Number(per_page);
-
-  const paginatedCompanyAllVacancies = companyAllVacancies?.slice(start, end);
-  const companyAllVacanciesLength: number = companyAllVacancies?.length || 0;
 
   if (!role) {
     redirect("/role");
@@ -65,9 +52,30 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
     redirect("/no-access");
   }
 
+  const companyUser = await getCompanyUser(user?.email);
+
   if (!companyUser) {
     redirect("/create-form");
   }
+
+  const companyAllVacancies = await getCompanyAllVacancies(companyUser?.id);
+
+  // other stuff
+
+  const userName: string = companyUser?.companyName?.split(" ").at(0) || "User";
+  const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
+  const query: string = searchParamsAwait?.query || "";
+
+  // pagination
+
+  const page = searchParamsAwait?.page ?? 1;
+  const per_page = searchParamsAwait?.per_page ?? 8;
+
+  const start: number = (Number(page) - 1) * Number(per_page);
+  const end: number = start + Number(per_page);
+
+  const paginatedCompanyAllVacancies = companyAllVacancies?.slice(start, end);
+  const companyAllVacanciesLength: number = companyAllVacancies?.length || 0;
 
   return (
     <>

@@ -20,19 +20,22 @@ interface CreateFormI {
 
 const Page: React.FC = async () => {
   const session = await auth();
+
+  if (!session?.user?.role) {
+    redirect("/role");
+  }
+
   const user = await getUser(session?.user?.email || "");
 
   const fullName: string | undefined = user?.fullName;
   const role: string | undefined = user?.role;
 
-  const applicantUser = await getApplicantUser(user?.email);
-  const companyUser = await getCompanyUser(user?.email);
+  const [applicantUser, companyUser] = await Promise.all([
+    getApplicantUser(user?.email),
+    getCompanyUser(user?.email),
+  ]);
 
   const createForm: CreateFormI = { fullName, role };
-
-  if (!session?.user?.role) {
-    redirect("/role");
-  }
 
   return (
     <>

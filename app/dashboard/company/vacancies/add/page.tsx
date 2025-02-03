@@ -13,10 +13,12 @@ export const metadata: Metadata = {
 const Page: React.FC = async () => {
   const session = await auth();
 
+  if (!session?.user?.email) {
+    redirect("/login");
+  }
+
   const user = await getUser(session?.user?.email || "");
   const role: string | undefined = user?.role;
-
-  const companyUser = await getCompanyUser(user?.email);
 
   if (!role) {
     redirect("/role");
@@ -25,6 +27,8 @@ const Page: React.FC = async () => {
   if (role !== "company") {
     redirect("/no-access");
   }
+
+  const companyUser = await getCompanyUser(user?.email);
 
   if (!companyUser) {
     redirect("/create-form");

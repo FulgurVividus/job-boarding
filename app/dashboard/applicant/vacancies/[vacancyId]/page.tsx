@@ -39,20 +39,20 @@ export async function generateStaticParams() {
 
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
-  const vacancy = await getVacancy(+vacancyId);
+
+  const [vacancy, session] = await Promise.all([
+    getVacancy(+vacancyId),
+    auth(),
+  ]);
+
+  if (!session?.user?.email) {
+    redirect("/login");
+  }
 
   if (!vacancy) return notFound();
 
-  const session = await auth();
-
   const user = await getUser(session?.user?.email || "");
   const role: string | undefined = user?.role;
-
-  const applicantUser = await getApplicantUser(user?.email);
-  const { id: applicantId } = applicantUser;
-
-  const data = await getVacancyStatus(vacancy.id, applicantId);
-  const status: string | null = data?.status;
 
   if (!role) {
     redirect("/role");
@@ -62,9 +62,15 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
     redirect("/no-access");
   }
 
+  const applicantUser = await getApplicantUser(user?.email);
+  const { id: applicantId } = applicantUser;
+
   if (!applicantUser) {
     redirect("/create-form");
   }
+
+  const data = await getVacancyStatus(vacancy.id, applicantId);
+  const status: string | null = data?.status;
 
   return (
     <>

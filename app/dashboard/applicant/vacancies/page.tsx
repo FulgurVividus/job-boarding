@@ -33,28 +33,16 @@ type SearchParams = Promise<{
 const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
   const session = await auth();
 
-  const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
+  if (!session?.user?.email) {
+    redirect("/login");
+  }
 
-  const user = await getUser(session?.user?.email || "");
+  const [user, searchParamsAwait, allVacancies] = await Promise.all([
+    getUser(session?.user?.email || ""),
+    searchParams,
+    getAllVacancies(),
+  ]);
   const role: string | undefined = user?.role;
-
-  const applicantUser = await getApplicantUser(user?.email);
-  const userName: string = applicantUser?.fullName?.split(" ").at(0) || "User";
-
-  const searchParamsAwait = await searchParams;
-  const query: string = searchParamsAwait?.query || "";
-
-  // pagination
-
-  const page = searchParamsAwait?.page ?? 1;
-  const per_page = searchParamsAwait?.per_page ?? 8;
-  const allVacancies = await getAllVacancies();
-
-  const start: number = (Number(page) - 1) * Number(per_page);
-  const end: number = start + Number(per_page);
-
-  const paginatedAllVacancies = allVacancies?.slice(start, end);
-  const allVacanciesLength: number = allVacancies?.length || 0;
 
   if (!role) {
     redirect("/role");
@@ -64,9 +52,28 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
     redirect("/no-access");
   }
 
+  const applicantUser = await getApplicantUser(user?.email);
+
   if (!applicantUser) {
     redirect("/create-form");
   }
+
+  // other stuff
+
+  const userName: string = applicantUser?.fullName?.split(" ").at(0) || "User";
+  const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
+  const query: string = searchParamsAwait?.query || "";
+
+  // pagination
+
+  const page = searchParamsAwait?.page ?? 1;
+  const per_page = searchParamsAwait?.per_page ?? 8;
+
+  const start: number = (Number(page) - 1) * Number(per_page);
+  const end: number = start + Number(per_page);
+
+  const paginatedAllVacancies = allVacancies?.slice(start, end);
+  const allVacanciesLength: number = allVacancies?.length || 0;
 
   return (
     <>

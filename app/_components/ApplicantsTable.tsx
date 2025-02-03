@@ -178,6 +178,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
             }}
             className="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600"
             type="button"
+            title="Accept"
           >
             Accept
           </button>
@@ -193,6 +194,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
             }}
             className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
             type="button"
+            title="Reject"
           >
             Reject
           </button>

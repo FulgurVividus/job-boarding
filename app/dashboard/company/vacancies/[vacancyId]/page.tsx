@@ -39,7 +39,15 @@ export async function generateStaticParams() {
 
 const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   const { vacancyId } = await params;
-  const companyVacancy = await getCompanySpecificVacancy(+vacancyId);
+
+  const [companyVacancy, session] = await Promise.all([
+    getCompanySpecificVacancy(+vacancyId),
+    auth(),
+  ]);
+
+  if (!session?.user?.email) {
+    redirect("/login");
+  }
 
   if (!companyVacancy) return notFound();
 
@@ -52,13 +60,8 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
     emailContact,
   } = companyVacancy;
 
-  const session = await auth();
-
   const user = await getUser(session?.user?.email || "");
   const role: string | undefined = user?.role;
-
-  const companyUser = await getCompanyUser(user?.email);
-  const allAppliedApplicants = await getAllAppliedApplicants(id);
 
   if (!role) {
     redirect("/role");
@@ -67,6 +70,11 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   if (role !== "company") {
     redirect("/no-access");
   }
+
+  const [companyUser, allAppliedApplicants] = await Promise.all([
+    getCompanyUser(user?.email),
+    getAllAppliedApplicants(id),
+  ]);
 
   if (!companyUser) {
     redirect("/create-form");
