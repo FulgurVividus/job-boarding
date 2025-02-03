@@ -93,6 +93,108 @@ body {
 
   /*  */
 
+  .applicant-form-button {
+    @apply uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .applicant-form-button:hover {
+      @apply hover:shadow-lg hover:bg-green-700;
+    }
+  }
+  @media (hover: none) {
+    .applicant-form-button:active {
+      @apply shadow-lg bg-green-700;
+    }
+  }
+
+  /*  */
+
+  .company-form-button {
+    @apply uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .company-form-button:hover {
+      @apply hover:shadow-lg hover:bg-green-700;
+    }
+  }
+  @media (hover: none) {
+    .company-form-button:active {
+      @apply shadow-lg bg-green-700;
+    }
+  }
+
+  /*  */
+
+  .add-company-vacancy-button {
+    @apply uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .add-company-vacancy-button:hover {
+      @apply hover:shadow-lg hover:bg-green-700;
+    }
+  }
+  @media (hover: none) {
+    .add-company-vacancy-button:active {
+      @apply shadow-lg bg-green-700;
+    }
+  }
+
+  /*  */
+
+  .apply-for-vacancy-button {
+    @apply uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .apply-for-vacancy-button:hover {
+      @apply hover:shadow-lg hover:bg-green-700;
+    }
+  }
+  @media (hover: none) {
+    .apply-for-vacancy-button:active {
+      @apply shadow-lg bg-green-700;
+    }
+  }
+
+  /*  */
+
+  .update-company-vacancy-updateButton {
+    @apply uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .update-company-vacancy-updateButton:hover {
+      @apply hover:shadow-lg hover:bg-green-700;
+    }
+  }
+  @media (hover: none) {
+    .update-company-vacancy-updateButton:active {
+      @apply shadow-lg bg-green-700;
+    }
+  }
+
+  /*  */
+
+  .update-company-vacancy-deleteButton {
+    @apply uppercase bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all duration-200 text-sm md:text-base tracking-wide;
+  }
+
+  @media (hover: hover) {
+    .update-company-vacancy-deleteButton:hover {
+      @apply hover:shadow-lg hover:bg-red-700;
+    }
+  }
+  @media (hover: none) {
+    .update-company-vacancy-deleteButton:active {
+      @apply shadow-lg bg-red-700;
+    }
+  }
+
+  /*  */
+
   .spinner {
     width: 40px;
     height: 40px;

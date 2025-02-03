@@ -180,7 +180,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
       <div className="flex flex-col md:flex-row items-center justify-between mt-10 gap-4">
         {(status === null || status === "" || !status) && (
           <button
-            className="uppercase bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transition-all duration-200 text-sm md:text-base tracking-wide disabled:cursor-not-allowed flex flex-grow-0 justify-center w-2/5"
+            className="apply-for-vacancy-button disabled:cursor-not-allowed flex flex-grow-0 justify-center w-2/5"
             title="Apply for the vacancy"
             type="submit"
             disabled={isPending}
