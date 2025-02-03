@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 const Page: React.FC = async () => {
   const session = await auth();
   const user = session?.user;
-  // console.log(user);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">

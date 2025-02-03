@@ -44,8 +44,6 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
   if (!companyVacancy) return notFound();
 
   const {
-    // created_at,
-    // company_id,
     id,
     title,
     vacancyLocation,

@@ -18,8 +18,6 @@ const ApplicantVacanciesList: React.FC<ApplicantVacanciesListProps> = async ({
   query,
   paginatedAllVacancies,
 }) => {
-  // const allVacancies = await getAllVacancies();
-
   return (
     <>
       <section>

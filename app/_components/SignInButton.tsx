@@ -5,7 +5,7 @@ import { signInAction } from "@/app/_lib/actions";
 
 const SignInButton: React.FC = () => {
   return (
-    <button className="flex flex-col" onClick={signInAction}>
+    <button className="flex flex-col" onClick={signInAction} type="button">
       <LinkButton
         className="py-5 flex items-center gap-2"
         title="Sign in with Google"
