@@ -51,7 +51,7 @@
 
 ### Authentication & State Management:
 
-- **NextAuth.js** - Secure authentication.
+- **NextAuth.js (Auth.js)** - Secure authentication.
 - **Context API** - Lightweight state management.
 
 ### Deployment:
