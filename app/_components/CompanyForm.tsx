@@ -40,6 +40,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 Company name:
               </label>
               <input
+                required
                 type="text"
                 id="companyName"
                 name="companyName"
@@ -55,6 +56,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 Location:
               </label>
               <input
+                required
                 type="text"
                 id="location"
                 name="location"
@@ -70,6 +72,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 Contact email:
               </label>
               <input
+                required
                 type="text"
                 id="contactEmail"
                 name="contactEmail"
@@ -86,6 +89,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 Contact number:
               </label>
               <input
+                required
                 type="text"
                 id="contactNumber"
                 name="contactNumber"
