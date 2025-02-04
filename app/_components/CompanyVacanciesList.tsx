@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import CompanyVacancyItem from "./CompanyVacancyItem";
+const CompanyVacancyItem = dynamic(() => import("./CompanyVacancyItem"));
 
 interface CompanyVacanciesListProps {
   query?: string;

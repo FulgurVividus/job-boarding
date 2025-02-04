@@ -1,11 +1,12 @@
-import React from "react";
 import { auth } from "@/app/_lib/auth";
 import { getApplicantUser, getCompanyUser, getUser } from "@/app/_lib/services";
-import CompanyForm from "@/app/_components/CompanyForm";
-import ApplicantForm from "@/app/_components/ApplicantForm";
-import { redirect } from "next/navigation";
-import WelcomeBack from "@/app/_components/WelcomeBack";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
+import React from "react";
+const CompanyForm = dynamic(() => import("@/app/_components/CompanyForm"));
+const ApplicantForm = dynamic(() => import("@/app/_components/ApplicantForm"));
+const WelcomeBack = dynamic(() => import("@/app/_components/WelcomeBack"));
 
 export const metadata: Metadata = {
   title: "Create-form",

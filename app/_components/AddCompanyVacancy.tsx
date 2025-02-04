@@ -1,17 +1,18 @@
 "use client";
 
-import React, { useTransition } from "react";
-import {
-  BriefcaseIcon,
-  MapPinIcon,
-  CurrencyDollarIcon,
-  AtSymbolIcon,
-  AcademicCapIcon,
-} from "@heroicons/react/24/solid";
 import { publishCompanyVacancyAction } from "@/app/_lib/actions";
-import toast from "react-hot-toast";
+import {
+  AcademicCapIcon,
+  AtSymbolIcon,
+  BriefcaseIcon,
+  CurrencyDollarIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import SpinnerMini from "./SpinnerMini";
+import React, { useTransition } from "react";
+import toast from "react-hot-toast";
+const SpinnerMini = dynamic(() => import("./SpinnerMini"));
 
 interface AddCompanyVacancyProps {
   companyUser:

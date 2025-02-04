@@ -1,7 +1,8 @@
-import React from "react";
 import { auth } from "@/app/_lib/auth";
-import GoBack from "@/app/_components/GoBack";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import React from "react";
+const GoBack = dynamic(() => import("@/app/_components/GoBack"));
 
 export const metadata: Metadata = {
   title: "No-access",

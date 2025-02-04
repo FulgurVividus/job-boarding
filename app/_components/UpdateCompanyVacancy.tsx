@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useTransition } from "react";
 import {
-  BriefcaseIcon,
-  MapPinIcon,
-  CurrencyDollarIcon,
-  AtSymbolIcon,
-  AcademicCapIcon,
-} from "@heroicons/react/24/solid";
-import {
-  updateCompanyVacancyAction,
   deleteCompanyVacancyAction,
+  updateCompanyVacancyAction,
 } from "@/app/_lib/actions";
+import {
+  AcademicCapIcon,
+  AtSymbolIcon,
+  BriefcaseIcon,
+  CurrencyDollarIcon,
+  MapPinIcon,
+} from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import React, { useTransition } from "react";
 import toast from "react-hot-toast";
-import SpinnerMini from "./SpinnerMini";
+const SpinnerMini = dynamic(() => import("./SpinnerMini"));
 
 interface UpdateCompanyVacancyProps {
   id: number;

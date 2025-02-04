@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import React from "react";
 import { auth } from "./_lib/auth";
-import LinkButton from "./_components/LinkButton";
-import type { Metadata } from "next";
+const LinkButton = dynamic(() => import("./_components/LinkButton"));
 
 export const metadata: Metadata = {
   title: "404",

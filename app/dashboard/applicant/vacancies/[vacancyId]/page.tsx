@@ -1,3 +1,4 @@
+import { auth } from "@/app/_lib/auth";
 import {
   getAllVacancies,
   getApplicantUser,
@@ -5,10 +6,11 @@ import {
   getVacancy,
   getVacancyStatus,
 } from "@/app/_lib/services";
-import React from "react";
-import { auth } from "@/app/_lib/auth";
+import dynamic from "next/dynamic";
 import { notFound, redirect } from "next/navigation";
-import ApplyForVacancy from "@/app/_components/ApplyForVacancy";
+const ApplyForVacancy = dynamic(
+  () => import("@/app/_components/ApplyForVacancy")
+);
 
 export async function generateMetadata({
   params,

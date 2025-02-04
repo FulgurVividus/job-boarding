@@ -1,5 +1,3 @@
-import ApplicantsTable from "@/app/_components/ApplicantsTable";
-import UpdateCompanyVacancy from "@/app/_components/UpdateCompanyVacancy";
 import { auth } from "@/app/_lib/auth";
 import {
   getAllAppliedApplicants,
@@ -8,7 +6,14 @@ import {
   getCompanyUser,
   getUser,
 } from "@/app/_lib/services";
+import dynamic from "next/dynamic";
 import { notFound, redirect } from "next/navigation";
+const ApplicantsTable = dynamic(
+  () => import("@/app/_components/ApplicantsTable")
+);
+const UpdateCompanyVacancy = dynamic(
+  () => import("@/app/_components/UpdateCompanyVacancy")
+);
 
 export async function generateMetadata({
   params,

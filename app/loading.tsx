@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import Spinner from "./_components/Spinner";
+const Spinner = dynamic(() => import("./_components/Spinner"));
 
 const Loading: React.FC = () => {
   return (

@@ -1,8 +1,9 @@
-import React from "react";
-import RoleChoice from "@/app/_components/RoleChoice";
 import { auth } from "@/app/_lib/auth";
-import WelcomeBack from "@/app/_components/WelcomeBack";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import React from "react";
+const RoleChoice = dynamic(() => import("@/app/_components/RoleChoice"));
+const WelcomeBack = dynamic(() => import("@/app/_components/WelcomeBack"));
 
 export const metadata: Metadata = {
   title: "Role",

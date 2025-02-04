@@ -1,8 +1,9 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import Spinner from "./Spinner";
+const Spinner = dynamic(() => import("./Spinner"));
 
 interface PaginationCompanyProps {
   hasNextPage: boolean | undefined;

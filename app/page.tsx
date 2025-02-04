@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import React from "react";
-import BigScreenMainPage from "./_components/BigScreenMainPage";
-import SmallScreenMainPage from "./_components/SmallScreenMainPage";
+const BigScreenMainPage = dynamic(
+  () => import("./_components/BigScreenMainPage")
+);
+const SmallScreenMainPage = dynamic(
+  () => import("./_components/SmallScreenMainPage")
+);
 
 export const metadata: Metadata = {
   title: "Jobless | Home",

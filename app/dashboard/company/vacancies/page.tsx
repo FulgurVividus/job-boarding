@@ -1,19 +1,25 @@
-import CompanyVacanciesList from "@/app/_components/CompanyVacanciesList";
-import LinkButton from "@/app/_components/LinkButton";
-import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
 import {
   getCompanyAllVacancies,
   getCompanyUser,
   getUser,
 } from "@/app/_lib/services";
-import { StaticImageData } from "next/image";
-import React from "react";
 import noUser from "@/public/no-user.png";
-import { redirect } from "next/navigation";
-import SearchBarCompany from "@/app/_components/SearchBarCompany";
-import PaginationCompany from "@/app/_components/PaginationCompany";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import { StaticImageData } from "next/image";
+import { redirect } from "next/navigation";
+const CompanyVacanciesList = dynamic(
+  () => import("@/app/_components/CompanyVacanciesList")
+);
+const LinkButton = dynamic(() => import("@/app/_components/LinkButton"));
+const SignOutButton = dynamic(() => import("@/app/_components/SignOutButton"));
+const SearchBarCompany = dynamic(
+  () => import("@/app/_components/SearchBarCompany")
+);
+const PaginationCompany = dynamic(
+  () => import("@/app/_components/PaginationCompany")
+);
 
 export const revalidate = 0;
 

@@ -1,6 +1,7 @@
-import React from "react";
-import SignInButton from "@/app/_components/SignInButton";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import React from "react";
+const SignInButton = dynamic(() => import("@/app/_components/SignInButton"));
 
 export const metadata: Metadata = {
   title: "Login",

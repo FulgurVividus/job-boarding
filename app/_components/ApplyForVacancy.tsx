@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useTransition } from "react";
 import { applyForVacancyAction } from "@/app/_lib/actions";
 import {
-  CalendarDaysIcon,
-  MapPinIcon,
-  CurrencyDollarIcon,
-  AtSymbolIcon,
   AcademicCapIcon,
+  AtSymbolIcon,
+  CalendarDaysIcon,
+  CurrencyDollarIcon,
+  MapPinIcon,
 } from "@heroicons/react/24/solid";
 import { differenceInDays } from "date-fns";
-import toast from "react-hot-toast";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import SpinnerMini from "./SpinnerMini";
+import React, { useTransition } from "react";
+import toast from "react-hot-toast";
+const SpinnerMini = dynamic(() => import("./SpinnerMini"));
 
 interface ApplyForVacancyProps {
   vacancy: {

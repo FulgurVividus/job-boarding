@@ -1,7 +1,8 @@
-import React from "react";
-import LinkButton from "./LinkButton";
-import Image from "next/image";
 import { signInAction } from "@/app/_lib/actions";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import React from "react";
+const LinkButton = dynamic(() => import("./LinkButton"));
 
 const SignInButton: React.FC = () => {
   return (

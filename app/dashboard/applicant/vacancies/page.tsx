@@ -1,7 +1,3 @@
-import ApplicantVacanciesList from "@/app/_components/ApplicantVacanciesList";
-import PaginationApplicant from "@/app/_components/PaginationApplicant";
-import SearchBarApplicant from "@/app/_components/SearchBarApplicant";
-import SignOutButton from "@/app/_components/SignOutButton";
 import { auth } from "@/app/_lib/auth";
 import {
   getAllVacancies,
@@ -9,10 +5,20 @@ import {
   getUser,
 } from "@/app/_lib/services";
 import noUser from "@/public/no-user.png";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { StaticImageData } from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
-import type { Metadata } from "next";
+const ApplicantVacanciesList = dynamic(
+  () => import("@/app/_components/ApplicantVacanciesList")
+);
+const PaginationApplicant = dynamic(
+  () => import("@/app/_components/PaginationApplicant")
+);
+const SearchBarApplicant = dynamic(
+  () => import("@/app/_components/SearchBarApplicant")
+);
+const SignOutButton = dynamic(() => import("@/app/_components/SignOutButton"));
 
 export const revalidate = 0;
 

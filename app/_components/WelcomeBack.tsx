@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import GoToDashboard from "./GoToDashboard";
+const GoToDashboard = dynamic(() => import("./GoToDashboard"));
 
 interface WelcomeBackProps {
   user?:

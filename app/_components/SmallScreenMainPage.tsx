@@ -1,7 +1,8 @@
 import backgroundImage1 from "@/public/version_1.png";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import React from "react";
-import LinkButton from "./LinkButton";
+const LinkButton = dynamic(() => import("./LinkButton"));
 
 const SmallScreenMainPage: React.FC = () => {
   return (

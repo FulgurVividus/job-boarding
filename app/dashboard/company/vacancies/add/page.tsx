@@ -1,9 +1,12 @@
-import AddCompanyVacancy from "@/app/_components/AddCompanyVacancy";
 import { auth } from "@/app/_lib/auth";
 import { getCompanyUser, getUser } from "@/app/_lib/services";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
 import React from "react";
-import type { Metadata } from "next";
+const AddCompanyVacancy = dynamic(
+  () => import("@/app/_components/AddCompanyVacancy")
+);
 
 export const metadata: Metadata = {
   title: "Publish",
