@@ -23,9 +23,6 @@ export async function generateMetadata({
   };
 }
 
-export const revalidate = 1;
-export const dynamicParams = true;
-
 export async function generateStaticParams() {
   const allVacancies = await getAllVacancies();
 

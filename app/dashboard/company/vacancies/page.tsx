@@ -15,6 +15,8 @@ import SearchBarCompany from "@/app/_components/SearchBarCompany";
 import PaginationCompany from "@/app/_components/PaginationCompany";
 import type { Metadata } from "next";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Company's vacancies",
   description:
@@ -28,8 +30,6 @@ type SearchParams = Promise<{
   page?: string;
   per_page?: string;
 }>;
-
-export const revalidate = 1;
 
 const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
   const session = await auth();

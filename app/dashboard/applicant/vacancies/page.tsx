@@ -14,6 +14,8 @@ import { redirect } from "next/navigation";
 import React from "react";
 import type { Metadata } from "next";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Applicant's vacancies",
   description:
@@ -21,8 +23,6 @@ export const metadata: Metadata = {
 };
 
 type IUserImage = string | StaticImageData;
-
-export const revalidate = 1;
 
 type SearchParams = Promise<{
   query?: string | undefined;
