@@ -18,6 +18,7 @@ interface CreateApplicantFormDataI {
   fullName: string;
   email: string;
   yearsOfExperience: string;
+  specialization: string;
   birthYear: number;
   user_id: number;
 }
@@ -105,6 +106,9 @@ export async function createApplicantAction(formData: FormData) {
   const yearsOfExperience = formData
     .get("yearsOfExperience")
     ?.slice(0, 90) as string;
+  const specialization = formData
+    .get("specialization")
+    ?.slice(0, 100) as string;
   const birthYear = Number(formData.get("birthYear")?.slice(0, 90) as string);
   const user_id = session?.user?.userId as number;
 
@@ -112,6 +116,7 @@ export async function createApplicantAction(formData: FormData) {
     fullName,
     email,
     yearsOfExperience,
+    specialization,
     birthYear,
     user_id,
   };

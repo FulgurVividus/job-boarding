@@ -40,6 +40,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 Full name:
               </label>
               <input
+                required
                 type="text"
                 id="fullName"
                 name="fullName"
@@ -56,10 +57,27 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 Email:
               </label>
               <input
+                required
                 type="text"
                 id="email"
                 name="email"
                 defaultValue={user?.email}
+                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              />
+            </div>
+
+            <div className="flex items-center gap-3">
+              <label
+                htmlFor="specialization"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              >
+                Specialization:
+              </label>
+              <input
+                required
+                type="text"
+                id="specialization"
+                name="specialization"
                 className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
@@ -72,6 +90,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 Experience:
               </label>
               <input
+                required
                 type="text"
                 id="yearsOfExperience"
                 name="yearsOfExperience"
@@ -87,6 +106,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 Birth year:
               </label>
               <input
+                required
                 type="number"
                 id="birthYear"
                 name="birthYear"

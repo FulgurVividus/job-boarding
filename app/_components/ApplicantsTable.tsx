@@ -18,6 +18,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  GraduationCap,
   Mail,
   RefreshCcw,
   Search,
@@ -45,6 +46,7 @@ interface ApplicantsTableProps {
           birthYear: number;
           created_at: string;
           yearsOfExperience: string;
+          specialization: string;
         };
       }[]
     | null;
@@ -58,6 +60,7 @@ interface Applicants {
   birthYear: number;
   created_at: string;
   yearsOfExperience: string;
+  specialization: string;
   status?: string;
   actions?: () => void;
   vacancy_id?: number;
@@ -128,6 +131,18 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
         <span className="flex items-center">
           <BriefcaseBusiness className="mr-2 flex-shrink-0" size={16} /> Years
           of experience
+        </span>
+      ),
+    }),
+
+    // specialization
+    columnHelper.accessor("specialization", {
+      id: "specialization",
+      cell: (info) => info.getValue(),
+      header: () => (
+        <span className="flex items-center">
+          <GraduationCap className="mr-2 flex-shrink-0" size={16} />{" "}
+          Specialization
         </span>
       ),
     }),
