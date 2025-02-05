@@ -1,8 +1,10 @@
-import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
-import Provider from "./Provider";
-import { RoleProvider } from "./_context/RoleContext";
+import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Toaster } from "react-hot-toast";
+import { RoleProvider } from "./_context/RoleContext";
+const ScreenMonitorProvider = dynamic(() => import("./ScreenMonitorProvider"));
+const Provider = dynamic(() => import("./Provider"));
 
 export const metadata: Metadata = {
   title: {
@@ -21,12 +23,14 @@ function RootLayout({
   return (
     <html lang="en" className="bg-[#FFFAF0] h-full">
       <body>
-        <RoleProvider>
-          <Provider>
-            <Toaster position="top-center" />
-            {children}
-          </Provider>
-        </RoleProvider>
+        <ScreenMonitorProvider>
+          <RoleProvider>
+            <Provider>
+              <Toaster position="top-center" />
+              {children}
+            </Provider>
+          </RoleProvider>
+        </ScreenMonitorProvider>
       </body>
     </html>
   );
