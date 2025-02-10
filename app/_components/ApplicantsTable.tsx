@@ -328,7 +328,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               />
               <Search
-                size={20}
+                size={18}
                 className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
               />
             </div>
@@ -410,7 +410,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   title="Go to 1st page"
                   type="button"
                 >
-                  <ChevronsLeft size={20} />
+                  <ChevronsLeft size={16} />
                 </button>
 
                 {/* Go to previous page */}
@@ -421,7 +421,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   title="Go to previous page"
                   type="button"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={16} />
                 </button>
 
                 {/* Current page input */}
@@ -450,7 +450,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   title="Go to next page"
                   type="button"
                 >
-                  <ChevronsRight size={20} />
+                  <ChevronsRight size={16} />
                 </button>
 
                 {/* Go to last page */}
@@ -461,7 +461,7 @@ const ApplicantsTable: React.FC<ApplicantsTableProps> = ({
                   title="Go to last page"
                   type="button"
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={16} />
                 </button>
               </div>
             </div>

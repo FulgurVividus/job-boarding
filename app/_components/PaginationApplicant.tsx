@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
@@ -51,7 +52,7 @@ const PaginationApplicant: React.FC<PaginationApplicantProps> = ({
                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
             }`}
           >
-            &larr; Prev
+            <ChevronLeft size={16} />
           </button>
 
           <div className="text-sm font-bold text-gray-700 dark:text-gray-300">
@@ -78,7 +79,7 @@ const PaginationApplicant: React.FC<PaginationApplicantProps> = ({
                 : "bg-gray-300 text-gray-600 cursor-not-allowed"
             }`}
           >
-            Next &rarr;
+            <ChevronRight size={16} />
           </button>
         </div>
       )}
