@@ -1,5 +1,3 @@
-// backend logic
-
 import { supabaseClient } from "./supabase";
 
 interface User {
