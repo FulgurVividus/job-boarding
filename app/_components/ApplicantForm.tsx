@@ -58,7 +58,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
               </label>
               <input
                 required
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 defaultValue={user?.email}

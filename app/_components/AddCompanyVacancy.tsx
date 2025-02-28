@@ -148,7 +148,7 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
             Email:
           </label>
           <input
-            type="text"
+            type="email"
             id="emailContact"
             name="emailContact"
             required

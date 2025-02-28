@@ -73,7 +73,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
               </label>
               <input
                 required
-                type="text"
+                type="email"
                 id="contactEmail"
                 name="contactEmail"
                 defaultValue={user?.email}

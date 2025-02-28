@@ -169,7 +169,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             Email:
           </label>
           <input
-            type="text"
+            type="email"
             id="emailContact"
             name="emailContact"
             defaultValue={emailContact}
