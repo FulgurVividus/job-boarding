@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { createUser, getUser } from "./services";
@@ -10,11 +12,9 @@ const authConfig = {
     }),
   ],
   callbacks: {
-    // eslint-disable-next-line
     authorized({ auth }: { auth: any }) {
       return !!auth?.user;
     },
-    // eslint-disable-next-line
     async signIn({ user }: { user: any }) {
       try {
         const existingUser = await getUser(user.email);
@@ -29,7 +29,6 @@ const authConfig = {
         return false;
       }
     },
-    // eslint-disable-next-line
     async session({ session }: { session: any }) {
       const userUser = await getUser(session.user.email);
       session.user.userId = userUser.id; // saving the id in the session

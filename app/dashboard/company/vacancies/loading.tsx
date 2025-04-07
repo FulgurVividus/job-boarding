@@ -6,7 +6,7 @@ const Loading: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen space-y-4 text-center">
       <Spinner />
-      <p className="text-lg md:text-xl font-medium text-gray-600">
+      <p className="text-lg md:text-xl font-medium text-gray-950">
         Loading your vacancies...
       </p>
     </div>
