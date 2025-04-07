@@ -10,7 +10,7 @@ const AddCompanyVacancy = dynamic(
 
 export const metadata: Metadata = {
   title: "Publish",
-  description: "In this page, company user can publish a new vacancy",
+  description: "Company user can publish a new vacancy",
 };
 
 const Page: React.FC = async () => {

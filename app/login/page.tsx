@@ -5,7 +5,7 @@ const SignInButton = dynamic(() => import("@/app/_components/SignInButton"));
 
 export const metadata: Metadata = {
   title: "Login",
-  description: "Login page",
+  description: "Login page, sign-in in order to access the platform",
 };
 
 const Page: React.FC = () => {
