@@ -8,11 +8,11 @@ const Provider = dynamic(() => import("./Provider"));
 
 export const metadata: Metadata = {
   title: {
-    template: "Jobless | %s",
-    default: "Welcome to Jobless",
+    template: "Hirely | %s",
+    default: "Welcome to Hirely",
   },
   description:
-    "Jobless - the online job board platform, where jobless people become employed",
+    "Hirely - the online job board platform, where jobless people become employed",
 };
 
 function RootLayout({

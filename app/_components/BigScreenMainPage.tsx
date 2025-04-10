@@ -13,7 +13,7 @@ const BigScreenMainPage: React.FC = () => {
             <h1 className="mb-2 text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-mainSalmon via-mainBlue to-mainGreen drop-shadow-lg">
               Welcome to{" "}
               <span className="text-mainSalmon font-extrabold underline decoration-wavy">
-                Jobless
+                Hirely
               </span>
             </h1>
             <h2 className="text-lg md:text-xl font-medium leading-relaxed text-gray-700 dark:text-gray-300 italic shadow-md">

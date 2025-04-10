@@ -1,8 +1,8 @@
-# Jobless - A Modern Job Hunting Platform (beta version)
+# Hirely - A Modern Job Hunting Platform (beta version)
 
 ## Overview 👀
 
-**Jobless** is a cutting-edge job hunting platform designed to connect job seekers with employers seamlessly. With its user-friendly interface, updates, and robust authentication system, "Jobless" simplifies the hiring process for companies and provides job seekers with an efficient way to find opportunities.
+**Hirely** is a cutting-edge job hunting platform designed to connect job seekers with employers seamlessly. With its user-friendly interface, updates, and robust authentication system, "Hirely" simplifies the hiring process for companies and provides job seekers with an efficient way to find opportunities.
 
 ## Features 🧨
 
@@ -12,6 +12,7 @@
 - **Job Search**: Find jobs using search.
 - **Job Applications**: Apply for jobs with a single click.
 - **Application Tracking**: Monitor the status of applications (Applied, Accepted, Rejected).
+- **Payments**: Single payments for creating and editing vacancies.
 
 ### For Employers:
 
@@ -53,6 +54,10 @@
 
 - **NextAuth.js (Auth.js)** - Secure authentication.
 - **Context API** - Lightweight state management.
+
+### Payments:
+
+- **Stripe** - Payment processing platform.
 
 ### Deployment:
 

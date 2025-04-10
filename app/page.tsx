@@ -9,8 +9,8 @@ const SmallScreenMainPage = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Jobless | Home",
-  description: "Welcome to Jobless",
+  title: "Hirely | Home",
+  description: "Welcome to Hirely",
 };
 
 const Page: React.FC = () => {

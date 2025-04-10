@@ -23,7 +23,7 @@ const SmallScreenMainPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-mainSalmon via-mainBlue to-mainGreen drop-shadow-md">
               Welcome to{" "}
               <span className="text-mainSalmon font-extrabold underline decoration-wavy decoration-mainBlue">
-                Jobless
+                Hirely
               </span>
             </h1>
             <h2 className="text-sm md:text-lg font-medium leading-relaxed text-gray-200 italic drop-shadow-sm">
