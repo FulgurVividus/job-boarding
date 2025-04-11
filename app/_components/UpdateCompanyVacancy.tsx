@@ -45,14 +45,9 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
     try {
       const form = e.currentTarget.form!;
       startUpdateTransition(() =>
-        updateCompanyVacancyAction(new FormData(form))
-          .then(() => {
-            toast.success(`Vacancy ${title}'s updated successfully`);
-            router.push("/dashboard/company/vacancies");
-          })
-          .catch((error) => {
-            toast.error(error.message);
-          })
+        updateCompanyVacancyAction(new FormData(form)).catch((error) => {
+          toast.error(error.message);
+        })
       );
     } catch (error) {
       const errorHappen = error as Error;
@@ -86,6 +81,8 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
       <div className="flex flex-col gap-6 w-full max-w-lg">
         {/* Vacancy ID */}
         <input type="hidden" value={id} name="id" />
+        {/* Price */}
+        <input type="hidden" value={1.5} name="price" />
 
         {/* Title */}
         <div className="flex items-center gap-3">

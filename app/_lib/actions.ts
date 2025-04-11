@@ -5,6 +5,7 @@ import { auth, signIn, signOut } from "./auth";
 import { supabaseClient } from "./supabase";
 import { redirect } from "next/navigation";
 import { getCompanyAllVacancies, getCompanyUser, getUser } from "./services";
+import { stripe } from "./stripe";
 
 interface CreateCompanyFormDataI {
   companyName: string;
@@ -21,23 +22,6 @@ interface CreateApplicantFormDataI {
   specialization: string;
   birthYear: number;
   user_id: number;
-}
-
-interface UpdateCompanyVacancyDataI {
-  title: string;
-  vacancyLocation: string;
-  experienceRequired: string;
-  salary: string;
-  emailContact: string;
-}
-
-interface PublishCompanyVacancyDataI {
-  company_id: number;
-  title: string;
-  vacancyLocation: string;
-  experienceRequired: string;
-  salary: string;
-  emailContact: string;
 }
 
 interface ApplyForVacancyDataI {
@@ -136,9 +120,9 @@ export async function createApplicantAction(formData: FormData) {
 
 //# server action for updating a COMPANY vacancy
 export async function updateCompanyVacancyAction(formData: FormData) {
-  const session = await auth();
+  const sessionAuth = await auth();
 
-  if (!session) {
+  if (!sessionAuth) {
     throw new Error(`You must be logged in`);
   }
 
@@ -152,25 +136,37 @@ export async function updateCompanyVacancyAction(formData: FormData) {
     ?.slice(0, 100) as string;
   const salary = formData.get("salary")?.slice(0, 100) as string;
   const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
+  const price = Number(formData.get("price") as string);
 
-  const updateCompanyVacancyData: UpdateCompanyVacancyDataI = {
-    title,
-    vacancyLocation,
-    experienceRequired,
-    salary,
-    emailContact,
-  };
+  const line_items = [
+    {
+      price_data: {
+        currency: "usd",
+        product_data: { name: "Paying for updating a vacancy" },
+        unit_amount: price * 100,
+      },
+      quantity: 1,
+    },
+  ];
 
-  const { error } = await supabaseClient
-    .from("vacancies")
-    .update(updateCompanyVacancyData)
-    .eq("id", id);
-
-  if (error) {
-    console.log(`Cannot update the vacancy: ${error}`);
-  }
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items,
+    mode: "payment",
+    success_url: `https://jobless-mu.vercel.app/dashboard/company/success-update?id=${id}&title=${encodeURIComponent(
+      title
+    )}&vacancyLocation=${encodeURIComponent(
+      vacancyLocation
+    )}&experienceRequired=${encodeURIComponent(
+      experienceRequired
+    )}&salary=${encodeURIComponent(salary)}&emailContact=${encodeURIComponent(
+      emailContact
+    )}`,
+    cancel_url: `https://jobless-mu.vercel.app/dashboard/company/vacancies`,
+  });
 
   revalidatePath("/dashboard/company/vacancies", "layout");
+  redirect(session.url!);
 }
 
 //# server action for deleting a COMPANY vacancy
@@ -207,9 +203,9 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
 
 //# server action for publishing a COMPANY vacancy
 export async function publishCompanyVacancyAction(formData: FormData) {
-  const session = auth();
+  const sessionAuth = auth();
 
-  if (!session) {
+  if (!sessionAuth) {
     throw new Error(`You must be logged in`);
   }
 
@@ -223,27 +219,37 @@ export async function publishCompanyVacancyAction(formData: FormData) {
     ?.slice(0, 100) as string;
   const salary = formData.get("salary")?.slice(0, 100) as string;
   const emailContact = formData.get("emailContact")?.slice(0, 100) as string;
+  const price = Number(formData.get("price"));
 
-  const publishCompanyVacancyData: PublishCompanyVacancyDataI = {
-    company_id,
-    title,
-    vacancyLocation,
-    experienceRequired,
-    salary,
-    emailContact,
-  };
+  const line_items = [
+    {
+      price_data: {
+        currency: "usd",
+        product_data: { name: "Paying for publishing a vacancy" },
+        unit_amount: price * 100,
+      },
+      quantity: 1,
+    },
+  ];
 
-  const { error } = await supabaseClient
-    .from("vacancies")
-    .insert([publishCompanyVacancyData])
-    .select()
-    .single();
-
-  if (error) {
-    throw new Error(`Vacancy could not be published: ${error}`);
-  }
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items,
+    mode: "payment",
+    success_url: `https://jobless-mu.vercel.app/dashboard/company/success-publish?company_id=${company_id}&title=${encodeURIComponent(
+      title
+    )}&vacancyLocation=${encodeURIComponent(
+      vacancyLocation
+    )}&experienceRequired=${encodeURIComponent(
+      experienceRequired
+    )}&salary=${encodeURIComponent(salary)}&emailContact=${encodeURIComponent(
+      emailContact
+    )}`,
+    cancel_url: `https://jobless-mu.vercel.app/dashboard/company/vacancies`,
+  });
 
   revalidatePath("/dashboard/company/vacancies", "layout");
+  redirect(session.url!);
 }
 
 //# server action for applying for a vacancy

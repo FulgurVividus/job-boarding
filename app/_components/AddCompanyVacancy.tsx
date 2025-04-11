@@ -9,7 +9,6 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/solid";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import React, { useTransition } from "react";
 import toast from "react-hot-toast";
 const SpinnerMini = dynamic(() => import("./SpinnerMini"));
@@ -29,20 +28,14 @@ interface AddCompanyVacancyProps {
 const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
   companyUser,
 }) => {
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   async function handlePublishCompanyVacancy(formData: FormData) {
     try {
       startTransition(() =>
-        publishCompanyVacancyAction(formData)
-          .then(() => {
-            toast.success(`You've successfully published the vacancy`);
-            router.push("/dashboard/company/vacancies");
-          })
-          .catch((error) => {
-            toast.error(error.message);
-          })
+        publishCompanyVacancyAction(formData).catch((error) => {
+          toast.error(error.message);
+        })
       );
     } catch (error) {
       const errorHappen = error as Error;
@@ -60,6 +53,8 @@ const AddCompanyVacancy: React.FC<AddCompanyVacancyProps> = ({
       <div className="flex flex-col gap-6 w-full max-w-lg">
         {/* Company ID */}
         <input type="hidden" value={companyUser?.id} name="company_id" />
+        {/* Price */}
+        <input type="hidden" value={4.0} name="price" />
 
         {/* Title Input */}
         <div className="flex items-center gap-3">
