@@ -3,7 +3,7 @@
 import { supabaseClient } from "@/app/_lib/supabase";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 interface PublishCompanyVacancyDataI {
@@ -15,7 +15,7 @@ interface PublishCompanyVacancyDataI {
   emailContact: string;
 }
 
-const SuccessPublish = () => {
+const SuccessPublish: React.FC = () => {
   const searchParams = useSearchParams();
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -69,21 +69,20 @@ const SuccessPublish = () => {
       {!isError ? (
         <div className="container mx-auto px-4 py-8 text-center flex flex-col items-center justify-center h-screen">
           <h1 className="text-3xl font-bold mb-4">Payment Successful!</h1>
-          <p className="mb-4">
+          <p className="mb-4 text-large">
             Thank you for publishing your vacancy. Your payment is being
             processed and your vacancy is published.
           </p>
 
-          <Link
-            href={"/dashboard/company/vacancies"}
-            className="text-blue-600 hover:underline"
-          >
+          <Link href={"/dashboard/company/vacancies"} className="common-button">
             Home
           </Link>
         </div>
       ) : (
         <div className="container mx-auto px-4 py-8 text-center flex flex-col items-center justify-center h-screen">
-          <h1 className="text-3xl font-bold mb-4">Error!</h1>
+          <h1 className="text-3xl mb-4 text-red-600 font-extrabold capitalize">
+            Error!
+          </h1>
           <p className="mb-4">
             Something went wrong, you cannot now publish a vacancy.
           </p>

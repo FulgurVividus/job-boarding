@@ -1,3 +1,4 @@
+import React from "react";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 const SuccessPublish = dynamic(
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   description: "Successfully published a vacancy",
 };
 
-const SuccessPublishPage = () => {
+const SuccessPublishPage: React.FC = () => {
   return (
     <>
       <SuccessPublish />
