@@ -87,10 +87,7 @@ const SuccessPublish: React.FC = () => {
             Something went wrong, you cannot now publish a vacancy.
           </p>
 
-          <Link
-            href={"/dashboard/company/vacancies"}
-            className="text-blue-600 hover:underline"
-          >
+          <Link href={"/dashboard/company/vacancies"} className="common-button">
             Home
           </Link>
         </div>

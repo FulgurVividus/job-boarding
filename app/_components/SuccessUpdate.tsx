@@ -71,10 +71,7 @@ const SuccessUpdate: React.FC = () => {
             and your vacancy is updated.
           </p>
 
-          <Link
-            href={"/dashboard/company/vacancies"}
-            className="text-blue-600 hover:underline"
-          >
+          <Link href={"/dashboard/company/vacancies"} className="common-button">
             Home
           </Link>
         </div>
