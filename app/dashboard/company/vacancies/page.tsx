@@ -70,7 +70,6 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
 
   const userName: string = companyUser?.companyName?.split(" ").at(0) || "User";
   const profilePictureUrl: IUserImage = session?.user?.image || noUser.src;
-  const query: string = searchParamsAwait?.query || "";
 
   // pagination
 
@@ -128,7 +127,6 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
 
         <div className="mt-10">
           <CompanyVacanciesList
-            query={query}
             paginatedCompanyAllVacancies={paginatedCompanyAllVacancies || []}
           />
 

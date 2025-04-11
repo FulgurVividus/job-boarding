@@ -1,9 +1,8 @@
 "use client";
 
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/outline";
-import React, { useCallback } from "react";
+import React from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
 
 interface SearchProps {
   placeholder: string;
@@ -14,25 +13,21 @@ const SearchBarCompany: React.FC<SearchProps> = ({ placeholder }) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleSearch = useCallback(
-    useDebouncedCallback((term: string) => {
-      const params = new URLSearchParams(searchParams);
+  const handleSearch = (term: string) => {
+    const params = new URLSearchParams(searchParams);
 
-      if (term) {
-        params.set("query", term);
-      } else {
-        params.delete("query");
-      }
-      router.replace(`${pathname}?${params.toString()}`);
-    }, 300),
-    [searchParams, pathname, router]
-  );
+    if (term) {
+      params.set("query", term);
+    } else {
+      params.delete("query");
+    }
+    router.replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <>
       <div className="flex items-center gap-3 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-full max-w-xs lg:max-w-md order-2 md:order-none">
         <label htmlFor="search"></label>
-
         <input
           type="search"
           id="search"

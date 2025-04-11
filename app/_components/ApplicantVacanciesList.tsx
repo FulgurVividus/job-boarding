@@ -3,7 +3,6 @@ import React from "react";
 const ApplicantVacancyItem = dynamic(() => import("./ApplicantVacancyItem"));
 
 interface ApplicantVacanciesListProps {
-  query?: string;
   paginatedAllVacancies: {
     id: number;
     created_at: string;
@@ -16,7 +15,6 @@ interface ApplicantVacanciesListProps {
 }
 
 const ApplicantVacanciesList: React.FC<ApplicantVacanciesListProps> = async ({
-  query,
   paginatedAllVacancies,
 }) => {
   return (
@@ -24,7 +22,6 @@ const ApplicantVacanciesList: React.FC<ApplicantVacanciesListProps> = async ({
       <section>
         <ApplicantVacancyItem
           paginatedAllVacancies={paginatedAllVacancies || []}
-          query={query}
         />
       </section>
     </>

@@ -4,6 +4,7 @@ import defaultImg from "@/public/default-vacancy-img.jpg";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 interface AllVacanciesProps {
@@ -16,14 +17,14 @@ interface AllVacanciesProps {
     salary: string;
     emailContact: string;
   }[];
-
-  query?: string;
 }
 
 const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
   paginatedAllVacancies,
-  query,
 }) => {
+  const searchParams = useSearchParams();
+  const query: string = searchParams.get("query")?.toString() || "";
+
   const filteredAllVacancies = paginatedAllVacancies.filter((vacancy) =>
     vacancy.title.toLowerCase().includes(query?.toLowerCase() || "")
   );
