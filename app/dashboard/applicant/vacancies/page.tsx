@@ -8,6 +8,7 @@ import noUser from "@/public/no-user.png";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { StaticImageData } from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 const ApplicantVacanciesList = dynamic(
   () => import("@/app/_components/ApplicantVacanciesList")
@@ -89,13 +90,15 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
           <SearchBarApplicant placeholder={`Search for vacancies...`} />
 
           <div>
-            <img
-              src={profilePictureUrl}
-              alt={`${userName}'s profile picture`}
-              className="h-8 w-8 md:h-10 md:w-10 rounded-full border-mainSalmon border-1 object-cover"
-              referrerPolicy="no-referrer"
-              title="Profile picture"
-            />
+            <Link href={"/dashboard/applicant/profile"}>
+              <img
+                src={profilePictureUrl}
+                alt={`${userName}'s profile picture`}
+                className="h-8 w-8 md:h-10 md:w-10 rounded-full border-mainSalmon border-1 object-cover"
+                referrerPolicy="no-referrer"
+                title="Go to profile page"
+              />
+            </Link>
           </div>
         </div>
 

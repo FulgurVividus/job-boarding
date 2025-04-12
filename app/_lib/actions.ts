@@ -30,6 +30,23 @@ interface ApplyForVacancyDataI {
   status: string;
 }
 
+interface UpdateCompanyProfileDataI {
+  id: number;
+  companyName: string;
+  location: string;
+  contactEmail: string;
+  contactNumber: string;
+}
+
+interface UpdateApplicantProfileDataI {
+  id: number;
+  fullName: string;
+  email: string;
+  specialization: string;
+  yearsOfExperience: string;
+  birthYear: number;
+}
+
 export async function signInAction() {
   await signIn("google", { redirectTo: "/role" });
 }
@@ -126,6 +143,16 @@ export async function updateCompanyVacancyAction(formData: FormData) {
     throw new Error(`You must be logged in`);
   }
 
+  const user = await getUser(sessionAuth?.user?.email);
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
+  }
+
   const id = Number(formData.get("id") as string);
   const title = formData.get("title")?.slice(0, 100) as string;
   const vacancyLocation = formData
@@ -177,8 +204,16 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
     throw new Error(`You must be logged in`);
   }
 
-  const user = await getUser(session?.user?.email || "");
+  const user = await getUser(session?.user?.email);
   const companyUser = await getCompanyUser(user?.email);
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
+  }
 
   const companyAllVacancies = await getCompanyAllVacancies(companyUser?.id);
   const companyAllVacanciesIds: number[] | undefined = companyAllVacancies?.map(
@@ -203,10 +238,20 @@ export async function deleteCompanyVacancyAction(vacancyId: number) {
 
 //# server action for publishing a COMPANY vacancy
 export async function publishCompanyVacancyAction(formData: FormData) {
-  const sessionAuth = auth();
+  const sessionAuth = await auth();
 
   if (!sessionAuth) {
     throw new Error(`You must be logged in`);
+  }
+
+  const user = await getUser(sessionAuth?.user?.email);
+  const role: string | undefined = user?.role;
+
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
   }
 
   const company_id = Number(formData.get("company_id") as string);
@@ -260,13 +305,12 @@ export async function applyForVacancyAction(formData: FormData) {
     throw new Error(`You must be logged in`);
   }
 
-  const user = await getUser(session?.user?.email || "");
+  const user = await getUser(session?.user?.email);
   const role: string | undefined = user?.role;
 
   if (!role) {
     throw new Error(`You should have chosen the role`);
   }
-
   if (role !== "applicant") {
     throw new Error(`Your role must be "applicant"`);
   }
@@ -308,7 +352,6 @@ export async function rejectApplicantAction(formData: FormData) {
   if (!role) {
     throw new Error(`You should have chosen the role`);
   }
-
   if (role !== "company") {
     throw new Error(`Your role must be "company"`);
   }
@@ -343,7 +386,6 @@ export async function acceptApplicantAction(formData: FormData) {
   if (!role) {
     throw new Error(`You should have chosen the role`);
   }
-
   if (role !== "company") {
     throw new Error(`Your role must be "company"`);
   }
@@ -362,4 +404,96 @@ export async function acceptApplicantAction(formData: FormData) {
   }
 
   revalidatePath(`/dashboard/company/vacancies/${vacancy_id}`, "page");
+}
+
+//# server action for updating COMPANY profile
+export async function updateCompanyProfileAction(formData: FormData) {
+  const session = await auth();
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+  if (role !== "company") {
+    throw new Error(`Your role must be "company"`);
+  }
+
+  const id = Number(formData.get("id") as string);
+  const companyName = formData.get("companyName")?.slice(0, 100) as string;
+  const location = formData.get("location")?.slice(0, 200) as string;
+  const contactEmail = formData.get("contactEmail")?.slice(0, 100) as string;
+  const contactNumber = formData.get("contactNumber")?.slice(0, 90) as string;
+
+  const updateCompanyProfileData: UpdateCompanyProfileDataI = {
+    id,
+    companyName,
+    location,
+    contactEmail,
+    contactNumber,
+  };
+
+  const { error } = await supabaseClient
+    .from("companies")
+    .update(updateCompanyProfileData)
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(`Cannot update the profile: ${error}`);
+  }
+
+  revalidatePath("/dashboard/company/vacancies", "layout");
+  redirect("/dashboard/company/vacancies");
+}
+
+//# server action for updating APPLICANT profile
+export async function updateApplicantProfileAction(formData: FormData) {
+  const session = await auth();
+  const user = await getUser(session?.user?.email || "");
+  const role: string | undefined = user?.role;
+
+  if (!session) {
+    throw new Error(`You must be logged in`);
+  }
+  if (!role) {
+    throw new Error(`You should have chosen the role`);
+  }
+  if (role !== "applicant") {
+    throw new Error(`Your role must be "applicant"`);
+  }
+
+  const id = Number(formData.get("id") as string);
+  const fullName = formData.get("fullNama")?.slice(0, 100) as string;
+  const email = formData.get("email")?.slice(0, 100) as string;
+  const specialization = formData
+    .get("specialization")
+    ?.slice(0, 100) as string;
+  const yearsOfExperience = formData
+    .get("yearsOfExperience")
+    ?.slice(0, 90) as string;
+  const birthYear = Number(formData.get("birthYear")?.slice(0, 90) as string);
+
+  const updateApplicantProfileData: UpdateApplicantProfileDataI = {
+    id,
+    fullName,
+    email,
+    specialization,
+    yearsOfExperience,
+    birthYear,
+  };
+
+  const { error } = await supabaseClient
+    .from("applicants")
+    .update(updateApplicantProfileData)
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(`Cannot update the profile: ${error}`);
+  }
+
+  revalidatePath("/dashboard/applicant/vacancies", "layout");
+  redirect("/dashboard/applicant/vacancies");
 }
