@@ -3,6 +3,7 @@
 import React from "react";
 import { useFormStatus } from "react-dom";
 import { updateCompanyProfileAction } from "@/app/_lib/actions";
+import toast from "react-hot-toast";
 
 interface CompanyProfileProps {
   companyUser: {
@@ -122,6 +123,7 @@ const UpdateButton: React.FC = () => {
       title="Update company profile"
       type="submit"
       disabled={pending}
+      onClick={() => toast.success("Profile successfully updated!")}
     >
       {pending ? "updating..." : "update"}
     </button>
