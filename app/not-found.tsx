@@ -30,7 +30,7 @@ const NotFound: React.FC = async () => {
       </h1>
 
       {/* Description */}
-      <p className="text-sm md:text-base text-center text-gray-600 dark:text-gray-300 max-w-md">
+      <p className="text-sm md:text-base text-center text-gray-600 max-w-md">
         It seems you’ve hit a dead end. Don’t worry, you can go back home and
         explore from there.
       </p>

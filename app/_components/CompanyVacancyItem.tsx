@@ -98,11 +98,11 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
       {/* No vacancies published message */}
       {!paginatedCompanyAllVacancies.length && !query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
             You have no vacancies yet
           </h1>
 
-          <h2 className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+          <h2 className="text-sm md:text-base text-gray-600">
             Start creating them{" "}
             <span className="text-mainSalmon font-medium">today!</span>
           </h2>
@@ -112,7 +112,7 @@ const CompanyVacancyItem: React.FC<CompanyAllVacanciesProps> = ({
       {/* No results found message */}
       {filteredCompanyAllVacancies.length === 0 && query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
             No results found :(
           </h1>
         </div>

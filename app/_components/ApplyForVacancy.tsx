@@ -87,7 +87,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
           <CalendarDaysIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="whenPublishedText"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Published:
           </label>
@@ -97,7 +97,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
             id="whenPublishedText"
             readOnly
             value={whenPublishedText}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 outline-none"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 outline-none"
           />
         </div>
 
@@ -106,7 +106,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
           <AcademicCapIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="experienceRequired"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Experience:
           </label>
@@ -116,7 +116,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
             id="experienceRequired"
             readOnly
             value={vacancy.experienceRequired}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 outline-none"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 outline-none"
           />
         </div>
 
@@ -125,7 +125,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
           <MapPinIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="vacancyLocation"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Location:
           </label>
@@ -135,7 +135,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
             name="vacancyLocation"
             id="vacancyLocation"
             readOnly
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 outline-none"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 outline-none"
           />
         </div>
 
@@ -144,7 +144,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
           <CurrencyDollarIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="salary"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Salary:
           </label>
@@ -154,7 +154,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
             id="salary"
             readOnly
             value={vacancy.salary}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 outline-none"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 outline-none"
           />
         </div>
 
@@ -163,7 +163,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
           <AtSymbolIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="emailContact"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Contact:
           </label>
@@ -173,7 +173,7 @@ const ApplyForVacancy: React.FC<ApplyForVacancyProps> = ({
             name="emailContact"
             id="emailContact"
             readOnly
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 outline-none"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 outline-none"
           />
         </div>
       </div>

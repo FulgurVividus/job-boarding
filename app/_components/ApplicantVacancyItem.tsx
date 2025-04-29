@@ -96,7 +96,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
       {/* No vacancies message */}
       {!paginatedAllVacancies.length && !query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
             <span className="text-mainSalmon font-medium">No</span> vacancies
             published yet
           </h1>
@@ -106,7 +106,7 @@ const ApplicantVacancyItem: React.FC<AllVacanciesProps> = ({
       {/* No results found message */}
       {filteredAllVacancies.length === 0 && query ? (
         <div className="flex flex-col items-center justify-center mt-14 text-center px-4">
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
             No results found :(
           </h1>
         </div>

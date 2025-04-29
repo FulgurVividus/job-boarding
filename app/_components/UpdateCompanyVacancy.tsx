@@ -89,7 +89,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
           <BriefcaseIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="title"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Title:
           </label>
@@ -98,7 +98,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="title"
             name="title"
             defaultValue={title}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
@@ -107,7 +107,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
           <MapPinIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="vacancyLocation"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Location:
           </label>
@@ -116,7 +116,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="vacancyLocation"
             name="vacancyLocation"
             defaultValue={vacancyLocation}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
@@ -125,7 +125,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
           <AcademicCapIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="experienceRequired"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Experience:
           </label>
@@ -134,7 +134,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="experienceRequired"
             name="experienceRequired"
             defaultValue={experienceRequired}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
@@ -143,7 +143,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
           <CurrencyDollarIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="salary"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Salary:
           </label>
@@ -152,7 +152,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="salary"
             name="salary"
             defaultValue={salary}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
 
@@ -161,7 +161,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
           <AtSymbolIcon className="h-6 w-6 text-mainBlue flex-shrink-0" />
           <label
             htmlFor="emailContact"
-            className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200"
+            className="font-sans text-base md:text-lg font-semibold text-gray-800"
           >
             Email:
           </label>
@@ -170,7 +170,7 @@ const UpdateCompanyVacancy: React.FC<UpdateCompanyVacancyProps> = ({
             id="emailContact"
             name="emailContact"
             defaultValue={emailContact}
-            className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+            className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
           />
         </div>
       </div>

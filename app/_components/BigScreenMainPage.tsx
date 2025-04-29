@@ -16,7 +16,7 @@ const BigScreenMainPage: React.FC = () => {
                 Hirely
               </span>
             </h1>
-            <h2 className="text-lg md:text-xl font-medium leading-relaxed text-gray-700 dark:text-gray-300 italic shadow-md">
+            <h2 className="text-lg md:text-xl font-medium leading-relaxed text-gray-700 italic shadow-md">
               Online job board platform
               <br />
               <span className="text-mainBlue font-semibold">

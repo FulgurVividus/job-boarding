@@ -20,9 +20,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
     <>
       <section className="flex flex-col justify-center items-center h-screen">
         <h1 className="text-center mb-10 text-3xl md:text-6xl font-extrabold tracking-tight">
-          <span className="text-gray-800 dark:text-gray-200">
-            You must create the{" "}
-          </span>
+          <span className="text-gray-800">You must create the </span>
           <span className="text-mainSalmon drop-shadow-lg">applicant</span> form
         </h1>
 
@@ -35,7 +33,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="fullName"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Full name:
               </label>
@@ -45,14 +43,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 id="fullName"
                 name="fullName"
                 defaultValue={user?.fullName}
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="email"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Email:
               </label>
@@ -62,14 +60,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 id="email"
                 name="email"
                 defaultValue={user?.email}
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="specialization"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Specialization:
               </label>
@@ -78,14 +76,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 type="text"
                 id="specialization"
                 name="specialization"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="yearsOfExperience"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Experience:
               </label>
@@ -94,14 +92,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 type="text"
                 id="yearsOfExperience"
                 name="yearsOfExperience"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="birthYear"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Birth year:
               </label>
@@ -110,7 +108,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ user }) => {
                 type="number"
                 id="birthYear"
                 name="birthYear"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
           </div>

@@ -13,7 +13,7 @@ const SignOutButton: React.FC = () => {
       >
         <ArrowLeftStartOnRectangleIcon className="h-7 w-7" />
         <span
-          className="font-semibold text-lg md:text-xl text-gray-800 dark:text-gray-100 tracking-tight bg-clip-tex"
+          className="font-semibold text-lg md:text-xl text-gray-800 tracking-tight bg-clip-tex"
           style={{
             fontFamily: "'Poppins', sans-serif",
             letterSpacing: "0.02em",

@@ -55,7 +55,7 @@ const PaginationApplicant: React.FC<PaginationApplicantProps> = ({
             <ChevronLeft size={16} />
           </button>
 
-          <div className="text-sm font-bold text-gray-700 dark:text-gray-300">
+          <div className="text-sm font-bold text-gray-700">
             {page} / {Math.ceil(allVacanciesLength / Number(per_page))}
           </div>
 

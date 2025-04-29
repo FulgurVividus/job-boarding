@@ -20,9 +20,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
     <>
       <section className="flex flex-col justify-center items-center h-screen">
         <h1 className="text-center mb-10 text-3xl md:text-6xl font-extrabold tracking-tight">
-          <span className="text-gray-800 dark:text-gray-200">
-            You must create the{" "}
-          </span>
+          <span className="text-gray-800">You must create the </span>
           <span className="text-mainSalmon drop-shadow-lg">company</span> form
         </h1>
 
@@ -35,7 +33,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
             <div className="flex items-center gap-3">
               <label
                 htmlFor="companyName"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Company name:
               </label>
@@ -44,14 +42,14 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 type="text"
                 id="companyName"
                 name="companyName"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="location"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Location:
               </label>
@@ -60,14 +58,14 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 type="text"
                 id="location"
                 name="location"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="contactEmail"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Contact email:
               </label>
@@ -77,14 +75,14 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 id="contactEmail"
                 name="contactEmail"
                 defaultValue={user?.email}
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
 
             <div className="flex items-center gap-3">
               <label
                 htmlFor="contactNumber"
-                className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+                className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
               >
                 Contact number:
               </label>
@@ -93,7 +91,7 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ user }) => {
                 type="text"
                 id="contactNumber"
                 name="contactNumber"
-                className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+                className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
               />
             </div>
           </div>

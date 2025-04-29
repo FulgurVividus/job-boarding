@@ -78,7 +78,7 @@ const Page = async ({ params }: { params: Promise<{ vacancyId: string }> }) => {
           <span className="text-mainSalmon drop-shadow-lg">
             {vacancy.title}
           </span>{" "}
-          <span className="text-gray-800 dark:text-gray-200">Vacancy Page</span>
+          <span className="text-gray-800">Vacancy Page</span>
         </h1>
 
         <ApplyForVacancy

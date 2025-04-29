@@ -28,9 +28,7 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
         <span className="text-mainSalmon drop-shadow-lg">
           {fullName.split(" ").at(0)}&apos;s
         </span>{" "}
-        <span className="text-gray-800 dark:text-gray-200">
-          profile cabinet
-        </span>
+        <span className="text-gray-800">profile cabinet</span>
       </h1>
 
       <form
@@ -45,7 +43,7 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
           <div className="flex items-center gap-3">
             <label
               htmlFor="fullName"
-              className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
             >
               Full name:
             </label>
@@ -55,14 +53,14 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
               id="fullName"
               name="fullName"
               defaultValue={fullName}
-              className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
             />
           </div>
 
           <div className="flex items-center gap-3">
             <label
               htmlFor="email"
-              className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
             >
               Email:
             </label>
@@ -72,14 +70,14 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
               id="email"
               name="email"
               defaultValue={email}
-              className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
             />
           </div>
 
           <div className="flex items-center gap-3">
             <label
               htmlFor="specialization"
-              className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
             >
               Specialization:
             </label>
@@ -89,14 +87,14 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
               id="specialization"
               name="specialization"
               defaultValue={specialization}
-              className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
             />
           </div>
 
           <div className="flex items-center gap-3">
             <label
               htmlFor="yearsOfExperience"
-              className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
             >
               Experience:
             </label>
@@ -106,14 +104,14 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
               id="yearsOfExperience"
               name="yearsOfExperience"
               defaultValue={yearsOfExperience}
-              className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
             />
           </div>
 
           <div className="flex items-center gap-3">
             <label
               htmlFor="birthYear"
-              className="font-sans text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 text-nowrap"
+              className="font-sans text-base md:text-lg font-semibold text-gray-800 text-nowrap"
             >
               Birth year:
             </label>
@@ -124,7 +122,7 @@ const ApplicantProfile: React.FC<ApplicantProfileProps> = ({
               name="birthYear"
               defaultValue={birthYear}
               readOnly
-              className="w-full bg-gray-100 dark:bg-gray-800 text-sm md:text-base text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
+              className="w-full bg-gray-100 text-sm md:text-base text-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-mainBlue"
             />
           </div>
         </div>
